@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import MealList from './MealList';
-import ExerciseList from './ExerciseList';
+import Exercise from './Exercise'
 
-export default class App extends React.Component {
+export default class ExerciseList extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -17,9 +16,8 @@ export default class App extends React.Component {
     
     render () {
         return <div>
-        This is my new react app
-        <MealList/>
-        <ExerciseList/>
+        <h3>Exercises</h3>
+        <Exercise name = "Bicep Curl"/>
         </div>
     }
 }

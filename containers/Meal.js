@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import MealList from './MealList';
-import ExerciseList from './ExerciseList';
 
-export default class App extends React.Component {
+export default class Meal extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -14,12 +12,9 @@ export default class App extends React.Component {
     componentWillUnmount() {
 
     }
-    
     render () {
         return <div>
-        This is my new react app
-        <MealList/>
-        <ExerciseList/>
+        <h4>{this.props.name}</h4>
         </div>
     }
 }
