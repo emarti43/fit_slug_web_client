@@ -4,6 +4,9 @@ import Exercise from './Exercise'
 export default class ExerciseList extends React.Component {
     constructor(props) {
         super(props);
+        this.listElements = props.list.map((name) =>
+            <Exercise name = {name}/>
+        );
     }
 
     componentDidMount() {
@@ -13,11 +16,11 @@ export default class ExerciseList extends React.Component {
     componentWillUnmount() {
 
     }
-    
+
     render () {
         return <div>
         <h3>Exercises</h3>
-        <Exercise name = "Bicep Curl"/>
+        {this.listElements}
         </div>
     }
 }

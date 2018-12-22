@@ -14,12 +14,12 @@ export default class App extends React.Component {
     componentWillUnmount() {
 
     }
-    
+
     render () {
         return <div>
         This is my new react app
-        <MealList/>
-        <ExerciseList/>
+        <MealList list={["Chicken Tikki Masala", "Sticky Rice", "Lentils"]}/>
+        <ExerciseList list={["Bicep Curl", "Push Ups", "Bench Press"]}/>
         </div>
     }
 }

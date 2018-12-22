@@ -4,6 +4,9 @@ import Meal from './Meal'
 export default class MealList extends React.Component {
     constructor(props) {
         super(props);
+        this.listElements = props.list.map((name) =>
+            <Meal name={name}/>
+        );
     }
 
     componentDidMount() {
@@ -13,11 +16,11 @@ export default class MealList extends React.Component {
     componentWillUnmount() {
 
     }
-    
+
     render () {
         return <div>
         <h3>Meal List</h3>
-        <Meal name = "chicken"/>
+        {this.listElements}
         </div>
     }
 }
