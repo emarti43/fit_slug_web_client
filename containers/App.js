@@ -8,10 +8,10 @@ export default class App extends React.Component {
         super(props);
     }
     componentDidMount() {
-      axios.get('http://127.0.0.1/meals.json')
+      axios.get('http://127.0.0.1:3000/meals.json')
       .then(function (response) {
         console.log(response);
-      });
+      })
       .catch(function (error) {
         console.log(error);
       });
