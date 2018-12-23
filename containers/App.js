@@ -1,25 +1,20 @@
 import React, {Component} from 'react';
 import MealList from './MealList';
 import ExerciseList from './ExerciseList';
-import $ from 'jquery';
+const axios = require('axios');
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
     }
     componentDidMount() {
-        $.ajax({
-            url: 'http://127.0.0.1:3000/meals.json',
-            type: 'get',
-            success: function (response) {
-                // handle the response
-                console.log(response);
-            },
-            error: function (xhr, status) {
-                console.log('couldn\'t');
-            },
-            dataType: 'html'
-        });
+      axios.get('http://127.0.0.1/meals.json')
+      .then(function (response) {
+        console.log(response);
+      });
+      .catch(function (error) {
+        console.log(error);
+      });
     }
 
     componentWillUnmount() {
