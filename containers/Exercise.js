@@ -6,7 +6,7 @@ export default class Exercise extends React.Component {
     }
     render () {
         return <div>
-        <h4>{this.props.name}</h4>
+        <h4>{this.props.exerciseData.name}</h4>
         </div>
     }
 }

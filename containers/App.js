@@ -6,15 +6,33 @@ const axios = require('axios');
 export default class App extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+          mealList: [],
+          exerciseList: []
+        }
     }
-    componentDidMount() {
+    getMealList() {
       axios.get('http://127.0.0.1:3000/meals.json')
-      .then(function (response) {
-        console.log(response);
+      .then((response) => {
+        this.setState({mealList: response.data});
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
+    }
+
+    getExerciseList() {
+      axios.get('http://127.0.0.1:3000/exercises.json')
+      .then((response) => {
+        this.setState({exerciseList: response.data});
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+    componentDidMount() {
+      this.getMealList();
+      this.getExerciseList();
     }
 
     componentWillUnmount() {
@@ -22,10 +40,10 @@ export default class App extends React.Component {
     }
 
     render () {
-        return <div>
-        This is my new react app
-        <MealList list={["Chicken Tikki Masala", "Sticky Rice"]}/>
-        <ExerciseList list={["Bicep Curl", "Push Ups", "Bench Press"]}/>
-        </div>
+          return <div>
+          This is my new react app
+          <MealList mealList={this.state.mealList}/>
+          <ExerciseList exerciseList={this.state.exerciseList}/>
+          </div>
     }
 }

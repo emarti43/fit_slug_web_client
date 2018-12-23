@@ -4,13 +4,9 @@ import Exercise from './Exercise'
 export default class ExerciseList extends React.Component {
     constructor(props) {
         super(props);
-        this.listElements = props.list.map((name) =>
-            <Exercise name = {name}/>
-        );
     }
 
     componentDidMount() {
-
     }
 
     componentWillUnmount() {
@@ -18,9 +14,12 @@ export default class ExerciseList extends React.Component {
     }
 
     render () {
+      const listElements = this.props.exerciseList.map((exercise, i) =>
+          <Exercise exerciseData = {exercise} key = {i}/>
+      );
         return <div>
         <h3>Exercises</h3>
-        {this.listElements}
+        {listElements}
         </div>
     }
 }

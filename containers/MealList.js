@@ -4,13 +4,9 @@ import Meal from './Meal'
 export default class MealList extends React.Component {
     constructor(props) {
         super(props);
-        this.listElements = props.list.map((name) =>
-            <Meal name={name}/>
-        );
     }
 
     componentDidMount() {
-
     }
 
     componentWillUnmount() {
@@ -18,9 +14,12 @@ export default class MealList extends React.Component {
     }
 
     render () {
+      const listElements = this.props.mealList.map((meal, i) =>
+          <Meal mealData={meal} key={i}/>
+      );
         return <div>
         <h3>Meal List</h3>
-        {this.listElements}
+        {listElements}
         </div>
     }
 }

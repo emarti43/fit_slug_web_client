@@ -14,7 +14,12 @@ export default class Meal extends React.Component {
     }
     render () {
         return <div>
-        <h4>{this.props.name}</h4>
+        <h4>{this.props.mealData.name}</h4>
+        <ul>
+          <li> Serving Size: {this.props.mealData.serving_size}</li>
+          <li> Calories: {this.props.mealData.kcal} </li>
+          <li> Total Fat: {this.props.mealData.total_fat} g</li>
+        </ul>
         </div>
     }
 }
