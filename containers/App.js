@@ -41,7 +41,6 @@ export default class App extends React.Component {
 
     render () {
           return <div>
-          This is my new react app
           <MealList mealList={this.state.mealList}/>
           <ExerciseList exerciseList={this.state.exerciseList}/>
           </div>

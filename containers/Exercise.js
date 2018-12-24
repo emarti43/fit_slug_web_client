@@ -5,7 +5,7 @@ export default class Exercise extends React.Component {
         super(props);
     }
     render () {
-        return <div>
+        return <div className = "card">
         <h4>{this.props.exerciseData.name}</h4>
         </div>
     }

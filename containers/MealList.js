@@ -17,8 +17,8 @@ export default class MealList extends React.Component {
       const listElements = this.props.mealList.map((meal, i) =>
           <Meal mealData={meal} key={i}/>
       );
-        return <div>
-        <h3>Meal List</h3>
+        return <div className="row">
+        <h3 className = "green-text">Meal List</h3>
         {listElements}
         </div>
     }

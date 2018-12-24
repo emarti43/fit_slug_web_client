@@ -18,7 +18,7 @@ export default class ExerciseList extends React.Component {
           <Exercise exerciseData = {exercise} key = {i}/>
       );
         return <div>
-        <h3>Exercises</h3>
+        <h3 className = "blue-text">Exercises</h3>
         {listElements}
         </div>
     }
