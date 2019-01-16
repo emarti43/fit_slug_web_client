@@ -36,7 +36,7 @@ export default class Meal extends React.Component {
         <li>    Sugar {this.props.mealData.sugar} g</li>
         <li> <b>Protein</b> {this.props.mealData.protein} g</li>
       </ul>
-      <a className="waves-effect waves-light btn" onClick={this.showForm}>add meal</a>
+      <a className="waves-effect waves-light btn" onClick={this.showForm}>{(this.state.showForm)? "Hide Form":"Add Meal"}</a>
       {(this.state.showForm)? form: <div></div>}
       </div>;
       return mealItem;
