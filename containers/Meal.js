@@ -1,14 +1,27 @@
 import React, {Component} from 'react';
+
 export default class Meal extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {showForm: false};
-        this.showForm = this.showForm.bind(this);
+        this.state = {showForm: false, numServingsForm: ''};
+        this.toggleForm = this.toggleForm.bind(this);
+        this.handleFormChange = this.handleFormChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    showForm(e) {
-      e.preventDefault();
+    toggleForm(event) {
+      event.preventDefault();
       this.setState({showForm: !this.state.showForm});
+    }
+
+    handleFormChange(event) {
+      event.preventDefault();
+      this.setState({numServingsForm: event.target.value});
+    }
+
+    handleSubmit(event) {
+      event.preventDefault();
+      console.log('A meal record was submitted: ' + this.state.numServingsForm);
     }
 
     componentDidMount() {
@@ -19,8 +32,17 @@ export default class Meal extends React.Component {
 
     }
     render () {
-      const form = <div>sample text</div>
-      const mealItem = <div className = "card">
+      var form = <div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+          Number of Servings:
+          <input type="text" value={this.state.numServingsForm} onChange={this.handleFormChange}/>
+          </label>
+          <input type="submit" value="Submit"/>
+        </form>
+      </div>
+
+      var mealItem = <div className = "card">
       <h4>{this.props.mealData.name}</h4>
       <ul>
         <li> <b>Amount Per</b> {this.props.mealData.serving_size}</li>
@@ -36,7 +58,9 @@ export default class Meal extends React.Component {
         <li>    Sugar {this.props.mealData.sugar} g</li>
         <li> <b>Protein</b> {this.props.mealData.protein} g</li>
       </ul>
-      <a className="waves-effect waves-light btn" onClick={this.showForm}>{(this.state.showForm)? "Hide Form":"Add Meal"}</a>
+      <a className="waves-effect waves-light btn" onClick={this.toggleForm}>
+        {(this.state.showForm)? "Hide Form":"Add Meal"}
+      </a>
       {(this.state.showForm)? form: <div></div>}
       </div>;
       return mealItem;

@@ -18,8 +18,11 @@
     "axios": "^0.18.0",
     "cors": "^2.8.5",
     "react": "^16.7.0",
+    "react-alert": "^5.5.0",
+    "react-alert-template-basic": "^1.0.0",
     "react-dom": "^16.7.0",
     "react-materialize": "^2.6.0",
+    "react-transition-group": "^4.2.1",
     "webpack-dev-server": "^3.1.10"
   },
   "devDependencies": {

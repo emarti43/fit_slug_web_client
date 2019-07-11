@@ -12,7 +12,7 @@ export default class App extends React.Component {
         }
     }
     getMealList() {
-      axios.get('http://127.0.0.1:3000/meals.json')
+      axios.get('http://127.0.0.1:3000/api/meals.json')
       .then((response) => {
         this.setState({mealList: response.data});
       })
@@ -22,7 +22,7 @@ export default class App extends React.Component {
     }
 
     getExerciseList() {
-      axios.get('http://127.0.0.1:3000/exercises.json')
+      axios.get('http://127.0.0.1:3000/api/exercises.json')
       .then((response) => {
         this.setState({exerciseList: response.data});
       })
