@@ -22,6 +22,7 @@ export default class Meal extends React.Component {
     handleSubmit(event) {
       event.preventDefault();
       console.log('A meal record was submitted: ' + this.state.numServingsForm);
+      this.toggleForm(event);
     }
 
     componentDidMount() {
