@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 export default class Exercise extends React.Component {
     constructor(props) {
@@ -17,7 +18,7 @@ export default class Exercise extends React.Component {
     handleSubmit(event) {
       event.preventDefault();
       console.log('An exercise record was submitted: ' + [this.state.numSets, this.state.numReps, this.state.totalWeight].toString());
-      this.toggleForm(event)
+      this.toggleForm(event);
     }
 
     handleFormChange(event) {

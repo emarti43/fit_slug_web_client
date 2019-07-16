@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import MealList from './MealList';
 import ExerciseList from './ExerciseList';
+import ExerciseRecordList from './ExerciseRecordList';
+import MealRecordList from './MealRecordList';
+
 const axios = require('axios');
 
 export default class App extends React.Component {
@@ -8,7 +11,9 @@ export default class App extends React.Component {
         super(props);
         this.state = {
           mealList: [],
-          exerciseList: []
+          exerciseList: [],
+          exerciseRecordList: [],
+          mealRecordList: []
         }
     }
     getMealList() {
@@ -30,9 +35,31 @@ export default class App extends React.Component {
         console.log(error);
       });
     }
+
+    getExerciseRecords() {
+      axios.get('http://127.0.0.1:3000/api/exercise_records.json')
+      .then((response) => {
+        this.setState({exerciseRecordList: response.data});
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+
+    getMealRecords() {
+      axios.get('http://127.0.0.1:3000/api/meal_records.json')
+      .then((response) => {
+        this.setState({mealRecordList: response.data});
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
     componentDidMount() {
       this.getMealList();
       this.getExerciseList();
+      this.getExerciseRecords();
+      this.getMealRecords();
     }
 
     componentWillUnmount() {
@@ -43,6 +70,8 @@ export default class App extends React.Component {
           return <div>
           <MealList mealList={this.state.mealList}/>
           <ExerciseList exerciseList={this.state.exerciseList}/>
+          <ExerciseRecordList exerciseRecordList={this.state.exerciseRecordList}/>
+          <MealRecordList mealRecordList={this.state.mealRecordList}/>
           </div>
     }
 }
