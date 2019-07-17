@@ -39,12 +39,12 @@ export default class Exercise extends React.Component {
           Weight (per rep):
           <input type="text" name="totalWeight" value={this.state.totalWeight} onChange={this.handleFormChange}/>
           </label>
-          <input type="submit" value="Submit"/>
+          <input type="submit" className="waves-effect waves-light btn blue" value="Submit"/>
         </form>
       </div>
         return (<div className = "card">
-        <h4>{this.props.exerciseData.name}</h4>
-        <a className="waves-effect waves-light btn" onClick={this.toggleForm}>{(this.state.showForm)? "Hide Form":"Add Exercise"}</a>
+        <h5>{this.props.exerciseData.name}</h5>
+        <a className="waves-effect waves-light btn blue" onClick={this.toggleForm}>{(this.state.showForm)? "Hide Form":"Add Exercise"}</a>
         {(this.state.showForm)? form: <div></div>}
         </div>
       );

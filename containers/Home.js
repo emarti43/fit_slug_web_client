@@ -69,11 +69,11 @@ class Home extends Component {
   render() {
     return (
       <div>
-      <h2> Home </h2>
+      <MealRecordList mealRecordList={this.state.mealRecordList}/>
+
+      <ExerciseRecordList exerciseRecordList={this.state.exerciseRecordList}/>
       <MealList mealList={this.state.mealList}/>
       <ExerciseList exerciseList={this.state.exerciseList}/>
-      <ExerciseRecordList exerciseRecordList={this.state.exerciseRecordList}/>
-      <MealRecordList mealRecordList={this.state.mealRecordList}/>
       </div>
     );
   }

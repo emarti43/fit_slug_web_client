@@ -8,11 +8,11 @@ export default class Exercise extends React.Component {
 
     render () {
         return (<div className = "card">
-        <h4>{this.props.exerciseData.exercise_id}</h4>
+        <h4>{this.props.exerciseData.exercise_name}</h4>
         <ul>
-          <li> <b> Number of Sets: </b> {this.props.exerciseData.num_sets}</li>
-          <li> <b> Number of Reps: </b> {this.props.exerciseData.num_reps}</li>
-          <li> <b> Weight: </b> {this.props.exerciseData.weight}</li>
+          <li> <b> Number of Sets: </b> {this.props.exerciseData.exercise_record.num_sets}</li>
+          <li> <b> Number of Reps: </b> {this.props.exerciseData.exercise_record.num_reps}</li>
+          <li> <b> Weight: </b> {this.props.exerciseData.exercise_record.weight}</li>
         </ul>
         </div>
       );

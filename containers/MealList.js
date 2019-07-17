@@ -18,7 +18,7 @@ export default class MealList extends React.Component {
           <Meal mealData={meal} key={i}/>
       );
         return <div className="row">
-        <h3 className = "green-text">Meal List</h3>
+        <h3 className = "blue-text">Meal List</h3>
         {listElements}
         </div>
     }

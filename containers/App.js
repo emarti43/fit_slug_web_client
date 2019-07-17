@@ -24,7 +24,7 @@ export default class App extends React.Component {
           return (
             <Router>
             <div>
-              <nav className="navbar navbar-expand-lg navbar-light bg-light blue lighten-3">
+              <nav className="navbar navbar-expand-lg navbar-dark bg-dark blue lighten-3">
                 <div class='nav-wrapper'>
                 <a class="brand-logo left">Fit Slug</a>
                   <ul className="navbar-nav mr-auto right">
