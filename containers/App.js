@@ -1,65 +1,19 @@
 import React, {Component} from 'react';
-import MealList from './MealList';
-import ExerciseList from './ExerciseList';
-import ExerciseRecordList from './ExerciseRecordList';
-import MealRecordList from './MealRecordList';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
+import Home from './Home';
+import Contact from './Contact';
+import About from './About';
 
 const axios = require('axios');
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-          mealList: [],
-          exerciseList: [],
-          exerciseRecordList: [],
-          mealRecordList: []
-        }
-    }
-    getMealList() {
-      axios.get('http://127.0.0.1:3000/api/meals.json')
-      .then((response) => {
-        this.setState({mealList: response.data});
-      })
-      .catch((error) => {
-        console.log(error);
-      });
     }
 
-    getExerciseList() {
-      axios.get('http://127.0.0.1:3000/api/exercises.json')
-      .then((response) => {
-        this.setState({exerciseList: response.data});
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    }
-
-    getExerciseRecords() {
-      axios.get('http://127.0.0.1:3000/api/exercise_records.json')
-      .then((response) => {
-        this.setState({exerciseRecordList: response.data});
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    }
-
-    getMealRecords() {
-      axios.get('http://127.0.0.1:3000/api/meal_records.json')
-      .then((response) => {
-        this.setState({mealRecordList: response.data});
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    }
     componentDidMount() {
-      this.getMealList();
-      this.getExerciseList();
-      this.getExerciseRecords();
-      this.getMealRecords();
+
     }
 
     componentWillUnmount() {
@@ -67,11 +21,27 @@ export default class App extends React.Component {
     }
 
     render () {
-          return <div>
-          <MealList mealList={this.state.mealList}/>
-          <ExerciseList exerciseList={this.state.exerciseList}/>
-          <ExerciseRecordList exerciseRecordList={this.state.exerciseRecordList}/>
-          <MealRecordList mealRecordList={this.state.mealRecordList}/>
-          </div>
+          return (
+            <Router>
+            <div>
+              <nav className="navbar navbar-expand-lg navbar-light bg-light blue lighten-3">
+                <div class='nav-wrapper'>
+                <a class="brand-logo left">Fit Slug</a>
+                  <ul className="navbar-nav mr-auto right">
+                    <li><Link to={'/'} className="nav-link"> Home </Link></li>
+                    <li><Link to={'/contact'} className="nav-link"> Contact</Link> </li>
+                    <li><Link to={'/about'} className="nav-link"> About</Link> </li>
+                  </ul>
+                </div>
+              </nav>
+              <hr/>
+              <Switch>
+                <Route exact path='/' component={Home}/>
+                <Route exact path='/contact' component={Contact}/>
+                <Route exact path='/about' component={About}/>
+              </Switch>
+            </div>
+            </Router>
+          );
     }
 }
