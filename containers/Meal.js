@@ -36,10 +36,8 @@ export default class Meal extends React.Component {
     render () {
       var form = <div>
         <form onSubmit={this.handleSubmit}>
-          <label>
-          Number of Servings:
+          <label> Number of Servings: </label>
           <input type="text" value={this.state.numServingsForm} onChange={this.handleFormChange}/>
-          </label>
           <input type="submit" className="waves-effect waves-light btn blue" value="Submit"/>
         </form>
       </div>

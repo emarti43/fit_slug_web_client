@@ -14,7 +14,8 @@ class Home extends Component {
         mealList: [],
         exerciseList: [],
         exerciseRecordList: [],
-        mealRecordList: []
+        mealRecordList: [],
+        isLoggedin: false,
       }
   }
   getMealList() {
@@ -70,7 +71,6 @@ class Home extends Component {
     return (
       <div>
       <MealRecordList mealRecordList={this.state.mealRecordList}/>
-
       <ExerciseRecordList exerciseRecordList={this.state.exerciseRecordList}/>
       <MealList mealList={this.state.mealList}/>
       <ExerciseList exerciseList={this.state.exerciseList}/>
