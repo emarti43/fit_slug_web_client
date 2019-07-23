@@ -3,12 +3,14 @@ import { instanceOf } from 'prop-types';
 
 const axios = require('axios');
 
-class Login extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
       password: '',
+      password_confirmation: '',
+      email: '',
     }
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -28,10 +30,12 @@ class Login extends Component {
     } else {
       console.log(token);
     }
-    axios.post('http://127.0.0.1:3000/api/login', {
+    axios.post('http://127.0.0.1:3000/api/signup', {
       user: {
         username: this.state.username,
         password: this.state.password,
+        password_confirmation: this.state.password_confirmation,
+        email: this.state.email,
       }
     })
     .then((response) => {
@@ -53,12 +57,15 @@ class Login extends Component {
         <h5>{this.state.isLoggedIn}</h5>
         <form onSubmit={this.handleFormSubmit}>
         <ul>
-
           <li>
           <input type="text" name='username' value={this.state.username} onChange={this.handleFormChange}/>
           <label> Username </label>
           </li>
 
+          <li>
+          <input type="text" name='username' value={this.state.email} onChange={this.handleFormChange}/>
+          <label> Email </label>
+          </li>
 
           <li>
           <input type="password" name= 'password' value={this.state.password} onChange={this.handleFormChange}/>
@@ -66,9 +73,13 @@ class Login extends Component {
           </li>
 
           <li>
-          <input type="submit" className="waves-effect waves-light btn blue" value="Submit"/>
+          <input type="password" name= 'password_confirmation' value={this.state.password_confirmation} onChange={this.handleFormChange}/>
+          <label> Confirm Password </label>
           </li>
 
+          <li>
+          <input type="submit" className="waves-effect waves-light btn blue" value="Submit"/>
+          </li>
         </ul>
 
         </form>
@@ -76,5 +87,4 @@ class Login extends Component {
     );
   }
 }
-
-export default Login;
+export default Signup;
