@@ -31,10 +31,16 @@ export default class App extends React.Component {
           isLoggedIn: logflag,
           userName: fetchedUsername,
         }
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
     componentDidMount() {
 
+    }
+
+    handleLogout(event) {
+      this.setState({isLoggedIn: false, userName: ''});
+      localStorage.removeItem('fit_slug_session');
     }
 
     componentWillUnmount() {
@@ -51,10 +57,18 @@ export default class App extends React.Component {
                 <div class='nav-wrapper'>
                  <a class="brand-logo left">Fit Slug</a>
                   <ul className="navbar-nav mr-auto right">
-                  <li>{(this.state.userName == '') ? '' : 'Welcome ' + this.state.userName}</li>
+                  <li>{(this.state.userName == '') ?
+                  '' : <a>Welcome <b>{this.state.userName} </b> </a>}</li>
                     <li><Link to={'/'} className="nav-link"> Home </Link></li>
                     <li><Link to={'/about'} className="nav-link"> About</Link></li>
-                    {this.state.isLoggedIn ? '' :<ul><li><Link to={'/login'} className="nav-link"> Login </Link></li> <li><Link to={'/signup'} className="nav-link"> Signup</Link></li></ul>}
+                    {this.state.isLoggedIn ?
+                      <li><Link to={'/login'} onClick={this.handleLogout} className="nav-link"> Logout</Link></li>
+                      :
+                      <div>
+                      <li><Link to={'/login'} className="nav-link"> Login </Link></li>
+                      <li><Link to={'/signup'} className="nav-link"> Signup</Link></li>
+                      </div>
+                    }
                   </ul>
                 </div>
               </nav>
