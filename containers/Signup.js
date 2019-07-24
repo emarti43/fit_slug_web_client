@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { instanceOf } from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 const axios = require('axios');
 
@@ -25,11 +26,6 @@ class Signup extends Component {
     event.preventDefault();
     console.log('attempting to login');
     var token = localStorage.getItem('fit_slug_session');
-    if (!token || token === '') {
-      console.log('no session found');
-    } else {
-      console.log(token);
-    }
     axios.post('http://127.0.0.1:3000/api/signup', {
       user: {
         username: this.state.username,
@@ -40,10 +36,9 @@ class Signup extends Component {
     })
     .then((response) => {
       if (response.status != 200) {
-        console.log('404 response');
       } else {
-        console.log(response.data.token);
         localStorage.setItem('fit_slug_session', response.data.token);
+        this.props.history.push('/');
       }
     })
     .catch((error) => {
@@ -56,31 +51,29 @@ class Signup extends Component {
       <div className="card">
         <h5>{this.state.isLoggedIn}</h5>
         <form onSubmit={this.handleFormSubmit}>
-        <ul>
-          <li>
-          <input type="text" name='username' value={this.state.username} onChange={this.handleFormChange}/>
-          <label> Username </label>
-          </li>
+        <div class= 'row'>
+          <input type="text" id='username' name='username' value={this.state.username} onChange={this.handleFormChange}/>
+          <label for='username' class='active'> Username </label>
+        </div>
 
-          <li>
-          <input type="text" name='username' value={this.state.email} onChange={this.handleFormChange}/>
-          <label> Email </label>
-          </li>
+        <div class='row'>
+          <input type="text" id='email' name='email' value={this.state.email} onChange={this.handleFormChange}/>
+          <label for='email' class='active'> Email </label>
+        </div>
 
-          <li>
-          <input type="password" name= 'password' value={this.state.password} onChange={this.handleFormChange}/>
-          <label> Password </label>
-          </li>
+        <div class='row'>
+          <input type="password" id='password'name= 'password' value={this.state.password} onChange={this.handleFormChange}/>
+          <label for='password' class='active'> Password </label>
+        </div>
 
-          <li>
-          <input type="password" name= 'password_confirmation' value={this.state.password_confirmation} onChange={this.handleFormChange}/>
-          <label> Confirm Password </label>
-          </li>
+        <div class='row'>
+          <input type="password" id='password_confirmation' name= 'password_confirmation' value={this.state.password_confirmation} onChange={this.handleFormChange}/>
+          <label for='password_confirmation' class='active'> Confirm Password </label>
+        </div>
 
-          <li>
-          <input type="submit" className="waves-effect waves-light btn blue" value="Submit"/>
-          </li>
-        </ul>
+        <div class='row'>
+          <input type="submit" onClick={this.props.handleLoginStatus} className="waves-effect waves-light btn blue" value="Submit"/>
+        </div>
 
         </form>
        </div>
