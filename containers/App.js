@@ -19,6 +19,7 @@ export default class App extends React.Component {
 
         this.handleLogout = this.handleLogout.bind(this);
         this.handleLoginStatus = this.handleLoginStatus.bind(this);
+        this.handleLoginStatus();
     }
 
     handleLoginStatus() {

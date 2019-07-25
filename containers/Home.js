@@ -39,7 +39,9 @@ class Home extends Component {
   }
 
   getExerciseRecords() {
-    axios.get('http://127.0.0.1:3000/api/exercise_records.json')
+    axios.get('http://127.0.0.1:3000/api/exercise_records.json', {headers: {
+      'Authorization' : localStorage.getItem('fit_slug_session')}
+    })
     .then((response) => {
       this.setState({exerciseRecordList: response.data});
     })
@@ -49,7 +51,9 @@ class Home extends Component {
   }
 
   getMealRecords() {
-    axios.get('http://127.0.0.1:3000/api/meal_records.json')
+    axios.get('http://127.0.0.1:3000/api/meal_records.json', {headers: {
+      'Authorization' : localStorage.getItem('fit_slug_session')}
+    })
     .then((response) => {
       this.setState({mealRecordList: response.data});
     })
