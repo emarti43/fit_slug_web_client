@@ -18,54 +18,22 @@ class Home extends Component {
         isLoggedin: false,
       }
   }
-  getMealList() {
-    axios.get('http://127.0.0.1:3000/api/meals.json')
+  genericRequestTemplate(endpoint, fieldName) {
+    axios.get('http://127.0.0.:3000/api/' + endpoint, {
+      headers: { 'Authorization': localStorage.getItem('fit_slug_session')}
+    })
     .then((response) => {
-      this.setState({mealList: response.data});
+      this.setState({[fieldName]: response.data});
     })
     .catch((error) => {
       console.log(error);
-    });
-  }
-
-  getExerciseList() {
-    axios.get('http://127.0.0.1:3000/api/exercises.json')
-    .then((response) => {
-      this.setState({exerciseList: response.data});
     })
-    .catch((error) => {
-      console.log(error);
-    });
-  }
-
-  getExerciseRecords() {
-    axios.get('http://127.0.0.1:3000/api/exercise_records.json', {headers: {
-      'Authorization' : localStorage.getItem('fit_slug_session')}
-    })
-    .then((response) => {
-      this.setState({exerciseRecordList: response.data});
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }
-
-  getMealRecords() {
-    axios.get('http://127.0.0.1:3000/api/meal_records.json', {headers: {
-      'Authorization' : localStorage.getItem('fit_slug_session')}
-    })
-    .then((response) => {
-      this.setState({mealRecordList: response.data});
-    })
-    .catch((error) => {
-      console.log(error);
-    });
   }
   componentDidMount() {
-    this.getMealList();
-    this.getExerciseList();
-    this.getExerciseRecords();
-    this.getMealRecords();
+    this.genericRequestTemplate('meals.json', 'mealList');
+    this.genericRequestTemplate('exercises.json', 'exerciseList');
+    this.genericRequestTemplate('meal_records.json', 'mealRecordList');
+    this.genericRequestTemplate('exercise_records.json', 'exerciseRecordList');
   }
 
   componentWillUnmount() {
