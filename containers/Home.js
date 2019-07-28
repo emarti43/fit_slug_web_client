@@ -19,7 +19,7 @@ class Home extends Component {
       }
   }
   genericRequestTemplate(endpoint, fieldName) {
-    axios.get('http://127.0.0.:3000/api/' + endpoint, {
+    axios.get('http://127.0.0.1:3000/api/' + endpoint, {
       headers: { 'Authorization': localStorage.getItem('fit_slug_session')}
     })
     .then((response) => {
@@ -30,10 +30,10 @@ class Home extends Component {
     })
   }
   componentDidMount() {
-    this.genericRequestTemplate('meals.json', 'mealList');
-    this.genericRequestTemplate('exercises.json', 'exerciseList');
-    this.genericRequestTemplate('meal_records.json', 'mealRecordList');
-    this.genericRequestTemplate('exercise_records.json', 'exerciseRecordList');
+    this.genericRequestTemplate('meals', 'mealList');
+    this.genericRequestTemplate('exercises', 'exerciseList');
+    this.genericRequestTemplate('meal_records', 'mealRecordList');
+    this.genericRequestTemplate('exercise_records', 'exerciseRecordList');
   }
 
   componentWillUnmount() {
