@@ -51,12 +51,20 @@ export default class Meal extends React.Component {
         </form>
       </div>
 
-      var mealItem = <div className = "card">
-      <h5>{this.props.mealData.name}</h5>
-      <NutritionCard mealData={this.props.mealData}/>
-      <a className="waves-effect waves-light btn blue" onClick={this.toggleForm}>
-        {(this.state.showForm)? "Hide Form":"Add Meal"}
-      </a>
+      var mealItem =
+      <div className="card sticky-action large">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg"/>
+        </div>
+        <div class="card-content">
+           <span class="card-title activator grey-text text-darken-4">{this.props.mealData.name}<i class="material-icons right">more_vert</i></span>
+        </div>
+        <NutritionCard mealData={this.props.mealData}/>
+        <div className="card-action">
+          <a className="waves-effect waves-teal btn-flat" onClick={this.toggleForm}>
+            {(this.state.showForm)? "Hide Form":"Add Meal"}
+          </a>
+        </div>
       {(this.state.showForm)? form: <div></div>}
       </div>;
       return mealItem;
