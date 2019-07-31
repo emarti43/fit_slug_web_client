@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import NutritionCard from './NutritionCard';
+import RequestTemplate from './RequestTemplate';
 
 export default class Meal extends React.Component {
     constructor(props) {
@@ -23,6 +24,14 @@ export default class Meal extends React.Component {
     handleSubmit(event) {
       event.preventDefault();
       console.log('A meal record was submitted: ' + this.state.numServingsForm);
+      RequestTemplate.genericRequest('post', 'meal_records',
+      {
+        meal_record:
+        {
+          meal_id: this.props.mealData.id,
+          num_servings: this.state.numServingsForm
+        }
+      });
       this.toggleForm(event);
     }
 

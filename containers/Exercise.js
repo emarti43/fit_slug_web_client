@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import RequestTemplate from './RequestTemplate';
 
 export default class Exercise extends React.Component {
     constructor(props) {
@@ -17,7 +17,15 @@ export default class Exercise extends React.Component {
 
     handleSubmit(event) {
       event.preventDefault();
-      console.log('An exercise record was submitted: ' + [this.state.numSets, this.state.numReps, this.state.totalWeight].toString());
+      RequestTemplate.genericRequest('post', 'exercise_records',
+      {
+        exercise_record:
+        {
+          exercise_id: this.props.exerciseData.id,
+          num_sets: this.state.numSets,
+          num_reps: this.state.numReps,
+          weight: this.state.totalWeight,
+        }});
       this.toggleForm(event);
     }
 
