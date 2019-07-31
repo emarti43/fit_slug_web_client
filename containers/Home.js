@@ -4,6 +4,7 @@ import MealList from './MealList';
 import ExerciseList from './ExerciseList';
 import ExerciseRecordList from './ExerciseRecordList';
 import MealRecordList from './MealRecordList';
+import ExerciseForm from './ExerciseForm';
 
 const axios = require('axios');
 
@@ -42,10 +43,11 @@ class Home extends Component {
   render() {
     return (
       <div>
-      <MealRecordList mealRecordList={this.state.mealRecordList}/>
-      <ExerciseRecordList exerciseRecordList={this.state.exerciseRecordList}/>
-      <MealList mealList={this.state.mealList}/>
-      <ExerciseList exerciseList={this.state.exerciseList}/>
+        <ExerciseForm/>
+        <MealRecordList mealRecordList={this.state.mealRecordList}/>
+        <ExerciseRecordList exerciseRecordList={this.state.exerciseRecordList}/>
+        <MealList mealList={this.state.mealList}/>
+        <ExerciseList exerciseList={this.state.exerciseList}/>
       </div>
     );
   }

@@ -57,8 +57,8 @@ export default class App extends React.Component {
             <Router>
             <div>
               <nav className="navbar navbar-expand-lg navbar-dark bg-dark blue lighten-3">
-                <div class='nav-wrapper'>
-                 <a class="brand-logo left">Fit Slug</a>
+                <div className='nav-wrapper'>
+                 <a className="brand-logo left">Fit Slug</a>
                   <ul className="navbar-nav mr-auto right">
                   <li>{(this.state.userName === '') ?
                   '' : <a>Welcome <b>{this.state.userName} </b> </a>}</li>

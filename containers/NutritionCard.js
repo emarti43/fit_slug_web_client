@@ -6,7 +6,7 @@ export default class NutritionCard extends React.Component {
   render() {
     return (
       <div className="card-reveal">
-        <span class="card-title grey-text text-darken-4">{this.props.mealData.name}<i class="material-icons right">close</i></span>
+        <span className="card-title grey-text text-darken-4">{this.props.mealData.name}<i className="material-icons right">close</i></span>
           <ul>
             <li> <b>Amount Per</b> {this.props.mealData.serving_size}</li>
             <li> <b>Calories</b> {this.props.mealData.kcal} </li>

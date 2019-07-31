@@ -40,27 +40,29 @@ export default class Exercise extends React.Component {
 
       var form =
         <form onSubmit={this.handleSubmit}>
-          <label>
-          Number of Sets:
-          <input type="text" name="numSets" value={this.state.numSets} onChange={this.handleFormChange}/>
-          Number of Reps Per Set:
-          <input type="text" name="numReps" value={this.state.numReps} onChange={this.handleFormChange}/>
-          Weight (per rep):
-          <input type="text" name="totalWeight" value={this.state.totalWeight} onChange={this.handleFormChange}/>
-          </label>
+          <div className="input-field col s12">
+            <label for="numSets"> Number of Sets:</label>
+            <input type="text" id="numSets" name="numSets" className="validate" value={this.state.numSets} onChange={this.handleFormChange}/>
+          </div>
+          <div className="input-field col s12">
+            <label for="numReps"> Number of Reps Per Set:</label>
+            <input type="text" id="numReps" name="numReps" value={this.state.numReps} onChange={this.handleFormChange}/>
+          </div>
+          <div className="input-field col s12">
+            <label for="totalWeight"> Weight (per rep): </label>
+            <input type="text" id="totalWeight" name="totalWeight" value={this.state.totalWeight} onChange={this.handleFormChange}/>
+          </div>
           <input type="submit" className="waves-effect waves-light btn blue" value="Submit"/>
         </form>
 
 
         return (
           <div className = "card">
-            <div class="card-image waves-effect waves-block waves-light">
+            <div className="card-image waves-effect waves-block waves-light">
               <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg"/>
             </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">{this.props.exerciseData.name}<i class="right btn-flat">Exercise Info</i></span>
-
-
+            <div className="card-content">
+              <span className="card-title activator grey-text text-darken-4">{this.props.exerciseData.name}<i className="right btn-flat">Exercise Info</i></span>
             </div>
             <div className="card-action">
               <a className="waves-effect waves-light btn-flat"

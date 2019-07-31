@@ -43,25 +43,25 @@ class Login extends Component {
 
   render() {
     return (
-      <div class='row'>
+      <div className='row'>
         <h5>{this.state.isLoggedIn}</h5>
-        <form class='col s12' onSubmit={this.handleFormSubmit}>
+        <form className='col s12' onSubmit={this.handleFormSubmit}>
 
-          <div class='row'>
-          <div class='input-field col s12'>
-          <input type="text" id='username' name='username' class="validate" value={this.state.username} onChange={this.handleFormChange}/>
-          <label for='username' class='active'> Username </label>
-          </div>
-          </div>
-
-          <div class='row'>
-          <div class='input-field col s12'>
-          <input type="password" id='password' name= 'password' class="validate" value={this.state.password} onChange={this.handleFormChange}/>
-          <label for='password' class='active'> Password </label>
+          <div className='row'>
+          <div className='input-field col s12'>
+          <input type="text" id='username' name='username' className="validate" value={this.state.username} onChange={this.handleFormChange}/>
+          <label for='username' className='active'> Username </label>
           </div>
           </div>
 
-          <div class='row'>
+          <div className='row'>
+          <div className='input-field col s12'>
+          <input type="password" id='password' name= 'password' className="validate" value={this.state.password} onChange={this.handleFormChange}/>
+          <label for='password' className='active'> Password </label>
+          </div>
+          </div>
+
+          <div className='row'>
           <div>
           <input type="submit" onClick={this.props.handleLoginStatus} className="waves-effect waves-light btn blue" value="Submit"/>
           </div>
