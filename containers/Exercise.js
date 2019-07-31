@@ -38,7 +38,7 @@ export default class Exercise extends React.Component {
 
     render () {
 
-      var form = <div>
+      var form =
         <form onSubmit={this.handleSubmit}>
           <label>
           Number of Sets:
@@ -50,19 +50,22 @@ export default class Exercise extends React.Component {
           </label>
           <input type="submit" className="waves-effect waves-light btn blue" value="Submit"/>
         </form>
-      </div>
 
 
         return (
-          <div className = "card medium">
+          <div className = "card">
             <div class="card-image waves-effect waves-block waves-light">
               <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg"/>
             </div>
             <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">{this.props.exerciseData.name}<i class="material-icons right">more_vert</i></span>
+              <span class="card-title activator grey-text text-darken-4">{this.props.exerciseData.name}<i class="right btn-flat">Exercise Info</i></span>
+
+
             </div>
             <div className="card-action">
-              <a className="waves-effect waves-light btn-flat" onClick={this.toggleForm}>{(this.state.showForm)? "Hide Form":"Add Exercise"}</a>
+              <a className="waves-effect waves-light btn-flat"
+                onClick={this.toggleForm}>{(this.state.showForm)? "Hide Form":"Add Exercise"}
+              </a>
               {(this.state.showForm)? form: <div></div>}
             </div>
           </div>

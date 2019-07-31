@@ -43,29 +43,28 @@ export default class Meal extends React.Component {
 
     }
     render () {
-      var form = <div>
+      var form =
         <form onSubmit={this.handleSubmit}>
           <label> Number of Servings: </label>
           <input type="text" value={this.state.numServingsForm} onChange={this.handleFormChange}/>
-          <input type="submit" className="waves-effect waves-light btn blue" value="Submit"/>
+          <input type="submit" className="waves-effect waves-teal btn-flat " value="Submit"/>
         </form>
-      </div>
 
       var mealItem =
-      <div className="card sticky-action large">
+      <div className="card sticky-actions">
         <div class="card-image waves-effect waves-block waves-light">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg"/>
         </div>
         <div class="card-content">
-           <span class="card-title activator grey-text text-darken-4">{this.props.mealData.name}<i class="material-icons right">more_vert</i></span>
+           <span class="card-title activator grey-text text-darken-4">{this.props.mealData.name}<i class=" right btn-flat">Nutritional Info</i></span>
         </div>
         <NutritionCard mealData={this.props.mealData}/>
         <div className="card-action">
           <a className="waves-effect waves-teal btn-flat" onClick={this.toggleForm}>
             {(this.state.showForm)? "Hide Form":"Add Meal"}
           </a>
+          {(this.state.showForm)? form: <div></div>}
         </div>
-      {(this.state.showForm)? form: <div></div>}
       </div>;
       return mealItem;
     }

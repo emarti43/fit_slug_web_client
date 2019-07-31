@@ -7,7 +7,6 @@ export default class NutritionCard extends React.Component {
     return (
       <div className="card-reveal">
         <span class="card-title grey-text text-darken-4">{this.props.mealData.name}<i class="material-icons right">close</i></span>
-        <p>
           <ul>
             <li> <b>Amount Per</b> {this.props.mealData.serving_size}</li>
             <li> <b>Calories</b> {this.props.mealData.kcal} </li>
@@ -22,7 +21,6 @@ export default class NutritionCard extends React.Component {
             <li>    Sugar {this.props.mealData.sugar} g</li>
             <li> <b>Protein</b> {this.props.mealData.protein} g</li>
           </ul>
-        </p>
       </div>
     );
   }
