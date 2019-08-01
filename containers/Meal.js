@@ -53,12 +53,12 @@ export default class Meal extends React.Component {
         </form>
 
       var mealItem =
-      <div className="card sticky-actions">
+      <div className="card sticky-action">
         <div className="card-image waves-effect waves-block waves-light">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg"/>
         </div>
         <div className="card-content">
-           <span className="card-title activator grey-text text-darken-4">{this.props.mealData.name}<i className=" right btn-flat">Nutritional Info</i></span>
+          <span className="card-title activator grey-text text-darken-4">{this.props.mealData.name}<i class="material-icons right">more_vert</i></span>
         </div>
         <NutritionCard mealData={this.props.mealData}/>
         <div className="card-action">
@@ -67,6 +67,7 @@ export default class Meal extends React.Component {
           </a>
           {(this.state.showForm)? form: <div></div>}
         </div>
+
       </div>;
       return mealItem;
     }

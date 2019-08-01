@@ -42,6 +42,7 @@ export default class ExerciseForm extends React.Component {
             <label htmlFor="exerciseName">Name of Exercise</label>
             <input type="text"></input>
           </div>
+          <span>Muscles Used:</span>
           <div className="row">{muscleCheckboxes}</div>
           <input type="submit" className="waves-effect waves-teal btn-flat" value="Submit"/>
         </form>

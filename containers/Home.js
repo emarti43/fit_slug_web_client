@@ -17,7 +17,9 @@ class Home extends Component {
         exerciseRecordList: [],
         mealRecordList: [],
         isLoggedin: false,
+        exerciseFormShow: false,
       }
+      this.toggleForm = this.toggleForm.bind(this);
   }
   genericRequestTemplate(endpoint, fieldName) {
     axios.get('http://127.0.0.1:3000/api/' + endpoint, {
@@ -30,6 +32,11 @@ class Home extends Component {
       console.log(error);
     })
   }
+  toggleForm(event) {
+    this.setState({[event.target.name]: !this.state[event.target.name]})
+    event.preventDefault();
+  }
+
   componentDidMount() {
     this.genericRequestTemplate('meals', 'mealList');
     this.genericRequestTemplate('exercises', 'exerciseList');
@@ -43,7 +50,6 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <ExerciseForm/>
         <MealRecordList mealRecordList={this.state.mealRecordList}/>
         <ExerciseRecordList exerciseRecordList={this.state.exerciseRecordList}/>
         <MealList mealList={this.state.mealList}/>

@@ -51,27 +51,27 @@ class Signup extends Component {
       <div className="card">
         <h5>{this.state.isLoggedIn}</h5>
         <form onSubmit={this.handleFormSubmit}>
-        <div className= 'row'>
+        <div class= 'row'>
           <input type="text" id='username' name='username' value={this.state.username} onChange={this.handleFormChange}/>
-          <label for='username' className='active'> Username </label>
+          <label for='username' class='active'> Username </label>
         </div>
 
-        <div className='row'>
+        <div class='row'>
           <input type="text" id='email' name='email' value={this.state.email} onChange={this.handleFormChange}/>
-          <label for='email' className='active'> Email </label>
+          <label for='email' class='active'> Email </label>
         </div>
 
-        <div className='row'>
+        <div class='row'>
           <input type="password" id='password'name= 'password' value={this.state.password} onChange={this.handleFormChange}/>
-          <label for='password' className='active'> Password </label>
+          <label for='password' class='active'> Password </label>
         </div>
 
-        <div className='row'>
+        <div class='row'>
           <input type="password" id='password_confirmation' name= 'password_confirmation' value={this.state.password_confirmation} onChange={this.handleFormChange}/>
-          <label for='password_confirmation' className='active'> Confirm Password </label>
+          <label for='password_confirmation' class='active'> Confirm Password </label>
         </div>
 
-        <div className='row'>
+        <div class='row'>
           <input type="submit" onClick={this.props.handleLoginStatus} className="waves-effect waves-light btn blue" value="Submit"/>
         </div>
 

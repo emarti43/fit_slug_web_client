@@ -17,10 +17,11 @@ export default class MealRecord extends React.Component {
         return mealData.num_servings*mealData.meal[fieldName];
       }
       var mealItem = <div className = "card">
-      <h4 className="card-title">{this.props.mealData.meal.name}</h4>
+
 
       <div className="card-content">
-         <span className="card-title activator grey-text text-darken-4">{this.props.mealData.name}<i className=" right btn-flat">Nutritional Info</i></span>
+        <h4 className="card-title">{this.props.mealData.meal.name}</h4>
+         <span className="card-title activator grey-text text-darken-4">{this.props.mealData.name}<i className="material-icons right">more_vert</i></span>
          <b>Number of servings</b> {this.props.mealData.num_servings}
          <ul>
           <li><b>Calories:</b> {totals(this.props.mealData, 'kcal')}</li>
