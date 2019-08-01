@@ -11,7 +11,7 @@ export default class ExerciseList extends React.Component {
         this.toggleForm = this.toggleForm.bind(this);
     }
     toggleForm(event) {
-      this.setState({[event.target.name]: !this.state[event.target.name]})
+      this.setState({exerciseFormShow: !this.state.exerciseFormShow})
       event.preventDefault();
     }
 
@@ -31,7 +31,7 @@ export default class ExerciseList extends React.Component {
         <a className="waves-effect waves-teal btn-flat blue" name="exerciseFormShow"onClick={this.toggleForm}>
           { this.state.exerciseFormShow ? "Hide Form" : "Create Exercise" }
         </a>
-        { this.state.exerciseFormShow ?<ExerciseForm/> : "" }
+        { this.state.exerciseFormShow ?<ExerciseForm toggleExerciseForm={this.toggleForm}/> : "" }
         {listElements}
         </div>
     }
