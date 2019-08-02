@@ -18,6 +18,7 @@ export default class ExerciseForm extends React.Component {
     } else {
       this.setState({[event.target.name]: event.target.value});
     }
+    event.preventDefault();
   }
   handleSubmit(event) {
     var selectedMuscles = [];

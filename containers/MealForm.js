@@ -4,12 +4,20 @@ import RequestTemplate from './RequestTemplate';
 export default class MealForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
   }
   handleSubmit(event) {
     console.log(this.state);
+    var params = this.state;
+    RequestTemplate.genericRequest('post', 'meals', params)
+    .then((response) => {
+      console.log(response);
+    }).catch((error) => {
+      console.log(error);
+    });
+    this.props.toggleMealForm();
     event.preventDefault();
   }
   handleFormChange(event) {
@@ -40,7 +48,7 @@ export default class MealForm extends React.Component {
         <span className="card-title">Create Exercise</span>
         <form onSubmit={this.handleSubmit}>
           {listOfFields}
-          <input type="button" className="waves-effect waves-teal btn-flat blue" value="Submit" onClick={this.props.toggleMealForm}/>
+          <input type="submit" className="waves-effect waves-teal btn-flat blue" value="Submit"/>
         </form>
       </div>
     );
