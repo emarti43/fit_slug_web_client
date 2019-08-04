@@ -49,7 +49,7 @@ class Home extends Component {
   }
   render() {
     return (
-      <div>
+      <div class='container'>
         <MealRecordList mealRecordList={this.state.mealRecordList}/>
         <ExerciseRecordList exerciseRecordList={this.state.exerciseRecordList}/>
         <MealList mealList={this.state.mealList}/>

@@ -8,11 +8,16 @@ export default class Exercise extends React.Component {
         this.toggleForm = this.toggleForm.bind(this);
         this.handleFormChange = this.handleFormChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     toggleForm(event) {
       event.preventDefault();
       this.setState({showForm: !this.state.showForm});
+    }
+    handleDelete(event) {
+
+      event.preventDefault();
     }
 
     handleSubmit(event) {
@@ -58,11 +63,15 @@ export default class Exercise extends React.Component {
 
         return (
           <div className = "card">
+          <btn className="btn-floating btn-large waves-effect waves-light red right"><i className="right material-icons">clear</i></btn>
             <div className="card-image waves-effect waves-block waves-light">
               <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg"/>
             </div>
             <div className="card-content">
-              <span className="card-title activator grey-text text-darken-4">{this.props.exerciseData.name}<i className="right btn-flat">Exercise Info</i></span>
+              <span className="card-title activator grey-text text-darken-4">
+              {this.props.exerciseData.name}<i className="right btn-flat">Exercise Info</i>
+              </span>
+
             </div>
             <div className="card-action">
               <a className="waves-effect waves-light btn-flat"
