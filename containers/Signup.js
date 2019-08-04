@@ -70,7 +70,7 @@ class Signup extends Component {
           value={this.state.email}
           onChange={this.handleFormChange}/>
           <label htmlFor='email'
-          class='active'>
+          className='active'>
             Email
           </label>
         </div>
