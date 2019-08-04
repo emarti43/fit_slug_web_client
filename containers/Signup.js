@@ -51,7 +51,7 @@ class Signup extends Component {
       <div className="container row">
         <h5>{this.state.isLoggedIn}</h5>
         <form onSubmit={this.handleFormSubmit}>
-        <div class= 'input-field col s6'>
+        <div className= 'input-field col s6'>
           <input type="text"
           id='username'
           name='username'
@@ -63,7 +63,7 @@ class Signup extends Component {
           </label>
         </div>
 
-        <div class='input-field col s6'>
+        <div className='input-field col s6'>
           <input type="text"
           id='email'
           name='email'
@@ -75,7 +75,7 @@ class Signup extends Component {
           </label>
         </div>
 
-        <div class='input-field col s6'>
+        <div className='input-field col s6'>
           <input type="password"
           id='password'
           name='password'
@@ -87,7 +87,7 @@ class Signup extends Component {
           </label>
         </div>
 
-        <div class='input-field col s6'>
+        <div className='input-field col s6'>
           <input type="password"
           id='password_confirmation'
           name='password_confirmation'
@@ -99,7 +99,7 @@ class Signup extends Component {
           </label>
         </div>
 
-        <div class='input-field col s6'>
+        <div className='input-field col s6'>
           <input type="submit" onClick={this.props.handleLoginStatus} className="waves-effect waves-light btn blue" value="Submit"/>
         </div>
 
