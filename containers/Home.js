@@ -5,6 +5,7 @@ import ExerciseList from './ExerciseList';
 import ExerciseRecordList from './ExerciseRecordList';
 import MealRecordList from './MealRecordList';
 import ExerciseForm from './ExerciseForm';
+import RequestTemplate from './RequestTemplate';
 
 const axios = require('axios');
 
@@ -21,10 +22,8 @@ class Home extends Component {
       }
       this.toggleForm = this.toggleForm.bind(this);
   }
-  genericRequestTemplate(endpoint, fieldName) {
-    axios.get('http://127.0.0.1:3000/api/' + endpoint, {
-      headers: { 'Authorization': localStorage.getItem('fit_slug_session')}
-    })
+  fetchResources(endpoint, fieldName) {
+    RequestTemplate.genericRequest('get', endpoint)
     .then((response) => {
       this.setState({[fieldName]: response.data});
     })
@@ -38,10 +37,10 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.genericRequestTemplate('meals', 'mealList');
-    this.genericRequestTemplate('exercises', 'exerciseList');
-    this.genericRequestTemplate('meal_records', 'mealRecordList');
-    this.genericRequestTemplate('exercise_records', 'exerciseRecordList');
+    this.fetchResources('meals', 'mealList');
+    this.fetchResources('exercises', 'exerciseList');
+    this.fetchResources('meal_records', 'mealRecordList');
+    this.fetchResources('exercise_records', 'exerciseRecordList');
   }
 
   componentWillUnmount() {
@@ -49,7 +48,7 @@ class Home extends Component {
   }
   render() {
     return (
-      <div class='container'>
+      <div className='container'>
         <MealRecordList mealRecordList={this.state.mealRecordList}/>
         <ExerciseRecordList exerciseRecordList={this.state.exerciseRecordList}/>
         <MealList mealList={this.state.mealList}/>

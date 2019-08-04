@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { instanceOf } from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import RequestTemplate from './RequestTemplate';
 
 const axios = require('axios');
 
@@ -24,16 +25,15 @@ class Signup extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    console.log('attempting to login');
-    var token = localStorage.getItem('fit_slug_session');
-    axios.post('http://127.0.0.1:3000/api/signup', {
+    var payload = {
       user: {
         username: this.state.username,
         password: this.state.password,
         password_confirmation: this.state.password_confirmation,
         email: this.state.email,
       }
-    })
+    };
+    RequestTemplate.genericRequest('post', 'signup', payload)
     .then((response) => {
       if (response.status != 200) {
       } else {
@@ -48,30 +48,58 @@ class Signup extends Component {
 
   render() {
     return (
-      <div className="card">
+      <div className="container row">
         <h5>{this.state.isLoggedIn}</h5>
         <form onSubmit={this.handleFormSubmit}>
-        <div class= 'row'>
-          <input type="text" id='username' name='username' value={this.state.username} onChange={this.handleFormChange}/>
-          <label for='username' class='active'> Username </label>
+        <div class= 'input-field col s6'>
+          <input type="text"
+          id='username'
+          name='username'
+          value={this.state.username}
+          onChange={this.handleFormChange}/>
+          <label htmlFor='username'
+          className='active'>
+            Username
+          </label>
         </div>
 
-        <div class='row'>
-          <input type="text" id='email' name='email' value={this.state.email} onChange={this.handleFormChange}/>
-          <label for='email' class='active'> Email </label>
+        <div class='input-field col s6'>
+          <input type="text"
+          id='email'
+          name='email'
+          value={this.state.email}
+          onChange={this.handleFormChange}/>
+          <label htmlFor='email'
+          class='active'>
+            Email
+          </label>
         </div>
 
-        <div class='row'>
-          <input type="password" id='password'name= 'password' value={this.state.password} onChange={this.handleFormChange}/>
-          <label for='password' class='active'> Password </label>
+        <div class='input-field col s6'>
+          <input type="password"
+          id='password'
+          name='password'
+          value={this.state.password}
+          onChange={this.handleFormChange}/>
+          <label htmlFor='password'
+          className='active'>
+            Password
+          </label>
         </div>
 
-        <div class='row'>
-          <input type="password" id='password_confirmation' name= 'password_confirmation' value={this.state.password_confirmation} onChange={this.handleFormChange}/>
-          <label for='password_confirmation' class='active'> Confirm Password </label>
+        <div class='input-field col s6'>
+          <input type="password"
+          id='password_confirmation'
+          name='password_confirmation'
+          value={this.state.password_confirmation}
+          onChange={this.handleFormChange}/>
+          <label htmlFor='password_confirmation'
+          className='active'>
+            Confirm Password
+          </label>
         </div>
 
-        <div class='row'>
+        <div class='input-field col s6'>
           <input type="submit" onClick={this.props.handleLoginStatus} className="waves-effect waves-light btn blue" value="Submit"/>
         </div>
 
