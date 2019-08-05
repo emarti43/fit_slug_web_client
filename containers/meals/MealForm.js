@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import RequestTemplate from './RequestTemplate';
+import RequestTemplate from '../utils/RequestTemplate';
 
 export default class MealForm extends React.Component {
   constructor(props) {
@@ -38,7 +38,7 @@ export default class MealForm extends React.Component {
   render () {
     var listOfFields = <div className="row">{Object.keys(this.state).map((key, i) =>
       <div key={i} className="input-field col s6">
-        <label htmlFor={key}>{key}</label>
+        <label htmlFor={key}>{key.split("_").join(" ")}</label>
           <input type="text" id={key} name={key} className="filled-in" onChange={this.handleFormChange}/>
       </div>
     )}</div>;

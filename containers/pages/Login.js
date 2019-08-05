@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { instanceOf } from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import RequestTemplate from './RequestTemplate';
+import RequestTemplate from '../utils/RequestTemplate';
 
 const axios = require('axios');
 

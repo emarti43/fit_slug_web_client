@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie'
 
-import Home from './Home';
-import Login from './Login';
-import About from './About';
-import Signup from './Signup';
-import RequestTemplate from './RequestTemplate'
+import Home from './pages/Home';
+import Login from './pages/Login';
+import About from './pages/About';
+import Signup from './pages/Signup';
+import RequestTemplate from './utils/RequestTemplate'
 
 const axios = require('axios');
 

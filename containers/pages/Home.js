@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
-import MealList from './MealList';
-import ExerciseList from './ExerciseList';
-import ExerciseRecordList from './ExerciseRecordList';
-import MealRecordList from './MealRecordList';
-import ExerciseForm from './ExerciseForm';
-import RequestTemplate from './RequestTemplate';
+import MealList from '../meals/MealList';
+import ExerciseList from '../exercises/ExerciseList';
+import ExerciseRecordList from '../exercise_records/ExerciseRecordList';
+import MealRecordList from '../meal_records/MealRecordList';
+import RequestTemplate from '../utils/RequestTemplate';
 
 const axios = require('axios');
 

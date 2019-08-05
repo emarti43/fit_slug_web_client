@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import NutritionCard from './NutritionCard';
-import RequestTemplate from './RequestTemplate';
+import NutritionCard from '../NutritionCard';
+import RequestTemplate from '../utils/RequestTemplate';
 
 export default class Meal extends React.Component {
     constructor(props) {
@@ -55,14 +55,13 @@ export default class Meal extends React.Component {
       var mealItem =
       <div className="card sticky-action">
         <div className="card-image waves-effect waves-block waves-light">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg"/>
         </div>
         <div className="card-content">
           <span className="card-title activator grey-text text-darken-4">{this.props.mealData.name}<i className="material-icons right">more_vert</i></span>
         </div>
         <NutritionCard mealData={this.props.mealData}/>
         <div className="card-action">
-          <a className="waves-effect waves-teal btn-flat" onClick={this.toggleForm}>
+          <a className="waves-effect waves-teal btn-flat light-blue-text" onClick={this.toggleForm}>
             {(this.state.showForm)? "Hide Form":"Add Meal"}
           </a>
           {(this.state.showForm)? form: <div></div>}

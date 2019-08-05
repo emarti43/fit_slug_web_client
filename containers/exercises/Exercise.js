@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import RequestTemplate from './RequestTemplate';
+import RequestTemplate from '../utils/RequestTemplate';
 
 export default class Exercise extends React.Component {
     constructor(props) {
@@ -31,6 +31,10 @@ export default class Exercise extends React.Component {
           num_reps: this.state.numReps,
           weight: this.state.totalWeight,
         }
+      }).then((response => {
+        console.log(response);
+      })).catch((error) => {
+        console.log(error);
       });
       this.toggleForm(event);
     }
@@ -73,9 +77,6 @@ export default class Exercise extends React.Component {
 
         return (
           <div className = "card">
-            <div className="card-image waves-effect waves-block waves-light">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg"/>
-            </div>
             <div className="card-content">
               <span className="card-title activator grey-text text-darken-4">
               {this.props.exerciseData.name}<i className="right material-icons">more_vert</i>
@@ -83,7 +84,7 @@ export default class Exercise extends React.Component {
             </div>
             {listElements}
             <div className="card-action">
-              <a className="waves-effect waves-light btn-flat"
+              <a className="waves-effect waves-light btn-flat light-blue-text"
                 onClick={this.toggleForm}>
                 {(this.state.showForm)? "Hide Form":"Add Exercise"}
               </a>

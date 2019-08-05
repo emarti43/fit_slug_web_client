@@ -25,17 +25,17 @@ export default class MealRecordList extends React.Component {
       const totalFat = this.props.mealRecordList.reduce(totals('total_fat'), 0);
       const totalCarbs = this.props.mealRecordList.reduce(totals('total_carb'), 0);
         return(
-        <div className="row">
-          <h3 className="blue-text">Your Meals</h3>
-          <div className="card">
-            <h5 className="card-title"> Totals </h5>
+        <div className="row ">
+          <div>
+            <h5 className="light-blue-text"> Macro Totals </h5>
             <ul>
               <li><b>Calories:</b> {totalCalories}</li>
-              <li><b>Protein:</b> {totalProtein}</li>
-              <li><b>Fat:</b> {totalFat}</li>
-              <li><b>Carbs:</b> {totalCarbs}</li>
+              <li><b>Protein:</b> {totalProtein} g</li>
+              <li><b>Fat:</b> {totalFat} g</li>
+              <li><b>Carbs:</b> {totalCarbs} g</li>
             </ul>
           </div>
+          <h5 className="light-blue-text" >Your Meals</h5>
           {listElements}
         </div>);
     }

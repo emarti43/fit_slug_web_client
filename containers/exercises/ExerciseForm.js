@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import RequestTemplate from './RequestTemplate';
+import RequestTemplate from '../utils/RequestTemplate';
 import ExerciseFormMuscles from './ExerciseFormMuscles';
 
 export default class ExerciseForm extends React.Component {
