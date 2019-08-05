@@ -55,9 +55,13 @@ export default class App extends React.Component {
               className="nav-link">
              Logout</Link>
         </li>;
-        var userWelcome = <a>Welcome <b>{this.state.userName} </b> </a>;
+        var userWelcome =
+        <li>
+          <a>Welcome <b>{this.state.userName} </b> </a>
+        </li>;
       } else {
-        var loginNavBar = <React.Fragment>
+        var loginNavBar =
+        <React.Fragment>
           <li>
             <Link to={'/login'}
               className="nav-link">
@@ -74,10 +78,10 @@ export default class App extends React.Component {
           <div>
             <nav className='navbar navbar-expand-lg navbar-dark bg-dark blue lighten-3'>
               <div className='nav-wrapper container'>
-                <a className='brand-logo left'>
+                <a className='brand-logo'>
                 Fit Slug
                 </a>
-                <ul className="navbar-nav mr-auto right">
+                <ul id='nav-mobile'className="right hide-on-med-and-down">
                   {userWelcome}
                   <li>
                     <Link to={'/'}

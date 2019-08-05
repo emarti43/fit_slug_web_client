@@ -27,7 +27,7 @@ class Signup extends Component {
     event.preventDefault();
     var payload = {
       user: {
-        username: this.state.username,
+        name: this.state.username,
         password: this.state.password,
         password_confirmation: this.state.password_confirmation,
         email: this.state.email,
@@ -44,6 +44,7 @@ class Signup extends Component {
     .catch((error) => {
       console.log(error);
     });
+    this.props.handleLoginStatus();
   }
 
   render() {
@@ -100,7 +101,8 @@ class Signup extends Component {
         </div>
 
         <div className='input-field col s6'>
-          <input type="submit" onClick={this.props.handleLoginStatus} className="waves-effect waves-light btn blue" value="Submit"/>
+          <input type="submit"
+          className="waves-effect waves-light btn blue" value="Submit"/>
         </div>
 
         </form>

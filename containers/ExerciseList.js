@@ -24,7 +24,7 @@ export default class ExerciseList extends React.Component {
 
     render () {
       const listElements = this.props.exerciseList.map((exercise, i) =>
-          <Exercise exerciseData = {exercise} key = {i}/>
+          <Exercise exerciseData = {exercise.exercise} muscles = {exercise.muscles} key = {i}/>
       );
         return <div>
         <h3 className = "blue-text">Exercises</h3>

@@ -26,7 +26,7 @@ class Login extends Component {
     var payload = {
       user:
         {
-        username: this.state.username,
+        name: this.state.username,
         password: this.state.password,
         }
     };

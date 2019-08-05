@@ -30,7 +30,8 @@ export default class Exercise extends React.Component {
           num_sets: this.state.numSets,
           num_reps: this.state.numReps,
           weight: this.state.totalWeight,
-        }});
+        }
+      });
       this.toggleForm(event);
     }
 
@@ -43,7 +44,8 @@ export default class Exercise extends React.Component {
 
     render () {
 
-      var form =
+      var exerciseRecordForm =
+      this.state.showForm ?
         <form onSubmit={this.handleSubmit}>
           <div className="input-field col s12">
             <label for="numSets"> Number of Sets:</label>
@@ -58,26 +60,34 @@ export default class Exercise extends React.Component {
             <input type="text" id="totalWeight" name="totalWeight" value={this.state.totalWeight} onChange={this.handleFormChange}/>
           </div>
           <input type="submit" className="waves-effect waves-light btn blue" value="Submit"/>
-        </form>
-
+        </form> : ''
+      const listElements =
+        <div className="row card-reveal">
+          <div className="colcard">
+            <span className="card-title grey-text text-darken-4">{this.props.exerciseData.name}<i className="material-icons right">close</i></span>
+            <ul>
+            {this.props.muscles.map((muscle, i) => <li key={i}> {muscle} </li>)}
+            </ul>
+          </div>
+        </div>;
 
         return (
           <div className = "card">
-          <btn className="btn-floating btn-large waves-effect waves-light red right"><i className="right material-icons">clear</i></btn>
             <div className="card-image waves-effect waves-block waves-light">
               <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg"/>
             </div>
             <div className="card-content">
               <span className="card-title activator grey-text text-darken-4">
-              {this.props.exerciseData.name}<i className="right btn-flat">Exercise Info</i>
+              {this.props.exerciseData.name}<i className="right material-icons">more_vert</i>
               </span>
-
             </div>
+            {listElements}
             <div className="card-action">
               <a className="waves-effect waves-light btn-flat"
-                onClick={this.toggleForm}>{(this.state.showForm)? "Hide Form":"Add Exercise"}
+                onClick={this.toggleForm}>
+                {(this.state.showForm)? "Hide Form":"Add Exercise"}
               </a>
-              {(this.state.showForm)? form: <div></div>}
+              {exerciseRecordForm}
             </div>
           </div>
       );
