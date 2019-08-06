@@ -4,11 +4,17 @@ import RequestTemplate from '../utils/RequestTemplate';
 export default class Exercise extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {showForm: false, numSets: '', numReps: '', totalWeight: ''};
+        this.state = {
+          showForm: false,
+          numSets: '',
+          numReps: '',
+          totalWeight: ''
+        };
         this.toggleForm = this.toggleForm.bind(this);
         this.handleFormChange = this.handleFormChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        console.log(this.props.exerciseData.muscles)
     }
 
     toggleForm(event) {
@@ -64,13 +70,13 @@ export default class Exercise extends React.Component {
             <input type="text" id="totalWeight" name="totalWeight" value={this.state.totalWeight} onChange={this.handleFormChange}/>
           </div>
           <input type="submit" className="waves-effect waves-light btn blue" value="Submit"/>
-        </form> : ''
+        </form> : '';
       const listElements =
         <div className="row card-reveal">
           <div className="colcard">
             <span className="card-title grey-text text-darken-4">{this.props.exerciseData.name}<i className="material-icons right">close</i></span>
             <ul>
-            {this.props.muscles.map((muscle, i) => <li key={i}> {muscle} </li>)}
+            {this.props.muscles.map((muscle, i) => <li key={i}> {muscle.name} </li>)}
             </ul>
           </div>
         </div>;
