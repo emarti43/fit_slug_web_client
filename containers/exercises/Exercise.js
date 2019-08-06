@@ -12,7 +12,6 @@ export default class Exercise extends React.Component {
         };
         this.toggleForm = this.toggleForm.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
-        console.log(this.props.exerciseData.muscles);
     }
 
     toggleForm(event) {

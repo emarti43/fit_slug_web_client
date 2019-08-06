@@ -16,16 +16,25 @@ export default class ExerciseRecordForm extends React.Component {
     event.preventDefault();
     if (this.props.submitRequest == 'put') {
       var endpoint = 'exercise_records/' + this.props.exerciseData.exercise_record.id;
+      var params = {
+        exercise_record: {
+          num_reps: this.state.numReps,
+          num_sets: this.state.numSets,
+          weight: this.state.weight,
+        }
+      };
     } else {
-      var endpoint = 'exercise_records/'
-    }
-    var params = {
-      exercise_record: {
-        num_reps: this.state.numReps,
-        num_sets: this.state.numSets,
-        weight: this.state.weight,
+      var endpoint = 'exercise_records/';
+      var params = {
+        exercise_record: {
+          num_reps: this.state.numReps,
+          num_sets: this.state.numSets,
+          weight: this.state.weight,
+          exercise_id: this.props.exerciseData.id,
+        }
       }
     }
+
     RequestTemplate.genericRequest(this.props.submitRequest, endpoint, params)
     .then((response) => {
       console.log(response);
