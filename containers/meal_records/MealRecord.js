@@ -1,40 +1,20 @@
 import React, {Component} from 'react';
 import NutritionCard from '../NutritionCard';
 import RequestTemplate from '../utils/RequestTemplate';
+import MealRecordForm from './MealRecordForm';
 
 export default class MealRecord extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
           showEditForm: false,
-          num_servings: '',
         }
-        this.handleFormChange = this.handleFormChange.bind(this);
         this.toggleForm = this.toggleForm.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    handleFormChange (event) {
-      event.preventDefault();
-      this.setState({ [event.target.name]: event.target.value });
-    }
+
     toggleForm(event) {
       event.preventDefault();
       this.setState({showEditForm: !this.state.showEditForm});
-    }
-    handleSubmit(event) {
-      event.preventDefault();
-      RequestTemplate.genericRequest('put', 'meal_records/' + this.props.mealData.id,
-      {
-        meal_record: {
-          num_servings: this.state.num_servings
-        }
-      })
-      .then( (response) => {
-        console.log(response);
-      }).catch((error) => {
-        console.log(error);
-      });
-      this.toggleForm(event);
     }
 
     componentDidMount() {
@@ -48,20 +28,8 @@ export default class MealRecord extends React.Component {
       function totals (mealData, fieldName) {
         return mealData.num_servings*mealData.meal[fieldName];
       }
-      var editMealForm =
-        <form onSubmit={this.handleSubmit}>
-          <div className="input-field col s12">
-            <input type="text"
-            id="num_servings"
-            name="num_servings"
-            value={this.state.num_servings}
-            onChange={this.handleFormChange}/>
-            <label htmlFor="num_servings">
-            Number of Servings
-            </label>
-          </div>
-          <input type="submit" className="waves-effect waves-light btn-flat light-blue-text" value="Submit"/>
-        </form>;
+
+      var editMealForm =<MealRecordForm mealData={this.props.mealData} submitRequest='put'/>;
 
       var mealItem =
       <div className = "card">

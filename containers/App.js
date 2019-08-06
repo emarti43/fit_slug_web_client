@@ -76,7 +76,7 @@ export default class App extends React.Component {
       return (
         <Router>
           <div>
-            <nav className='navbar navbar-expand-lg navbar-dark bg-dark blue lighten-3'>
+            <nav className='navbar navbar-expand-lg navbar-dark light-blue'>
               <div className='nav-wrapper container'>
                 <a className='brand-logo'>
                 Fit Slug

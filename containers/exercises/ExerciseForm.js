@@ -33,7 +33,7 @@ export default class ExerciseForm extends React.Component {
         muscles: selectedMuscles,
       }
     }
-    RequestTemplate.genericRequest('post', 'exercises', params)
+    RequestTemplate.genericRequest(this.props.submitRequest, 'exercises', params)
     .then((response) =>{
       console.log(response.code)
     }).catch( function (error) {
