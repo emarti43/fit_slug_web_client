@@ -12,6 +12,7 @@ export default class ExerciseForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
   }
+
   handleFormChange(event) {
     if (event.target.type == 'checkbox') {
       this.setState({[event.target.id]: !this.state[event.target.id]});
@@ -20,6 +21,7 @@ export default class ExerciseForm extends React.Component {
     }
     event.preventDefault();
   }
+
   handleSubmit(event) {
     var selectedMuscles = [];
     for(var i = 1; i <= this.state.muscles.length; i++) {
@@ -33,14 +35,21 @@ export default class ExerciseForm extends React.Component {
         muscles: selectedMuscles,
       }
     }
-    RequestTemplate.genericRequest(this.props.submitRequest, 'exercises', params)
+    if (this.props.submitRequest == 'put') {
+      var endpoint = 'exercises/' + this.props.exerciseData.id;
+    } else {
+      var endpoint = 'exercises';
+    }
+    RequestTemplate.genericRequest(this.props.submitRequest, endpoint, params)
     .then((response) =>{
-      console.log(response.code)
+      console.log(response)
     }).catch( function (error) {
       console.log(error);
     })
     event.preventDefault();
+    this.props.toggleExerciseForm(event);
   }
+
   componentDidMount() {
     RequestTemplate.genericRequest('get','muscles')
     .then((response) => {
@@ -60,7 +69,7 @@ export default class ExerciseForm extends React.Component {
     <ExerciseFormMuscles key={i} muscle={muscle} handleFormChange={this.handleFormChange}/>);
     return (
       <div className="card">
-        <span className="card-title">Create Exercise</span>
+        <span className="card-title">Exercise</span>
         <form onSubmit={this.handleSubmit}>
           <div className="input-field col s12">
             <label htmlFor="exerciseName">Name of Exercise</label>
@@ -68,7 +77,7 @@ export default class ExerciseForm extends React.Component {
           </div>
           <span>Muscles Used:</span>
           <div className="row">{muscleCheckboxes}</div>
-          <input type="submit" className="waves-effect waves-teal btn-flat" value="Submit" onClick={this.props.toggleExerciseForm}/>
+          <input type="submit" className="waves-effect waves-teal btn-flat light-blue-text" value="Submit"/>
         </form>
       </div>
     );

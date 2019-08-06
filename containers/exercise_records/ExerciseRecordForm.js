@@ -34,16 +34,16 @@ export default class ExerciseRecordForm extends React.Component {
         }
       }
     }
-
     RequestTemplate.genericRequest(this.props.submitRequest, endpoint, params)
     .then((response) => {
       console.log(response);
     })
     .catch((error) => {
       console.log(error);
-    })
-
+    });
+    this.props.toggleExerciseRecordForm();
   }
+  
   handleFormChange(event) {
     event.preventDefault();
     this.setState({[event.target.name]: event.target.value})

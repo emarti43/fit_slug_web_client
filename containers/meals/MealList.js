@@ -31,7 +31,7 @@ export default class MealList extends React.Component {
         <a className="waves-effect waves-teal btn-flat light-blue" name="exerciseFormShow"onClick={this.toggleForm}>
           { this.state.showMealForm ? "Hide Form" : "Create Meal" }
         </a>
-        { this.state.showMealForm ?<MealForm toggleMealForm={this.toggleForm}/> : "" }
+        { this.state.showMealForm ?<MealForm toggleMealForm={this.toggleForm} submitRequest='post'/> : "" }
         </div>
     }
 }

@@ -35,7 +35,8 @@ export default class MealRecordForm extends React.Component {
     })
     .catch((error) => {
       console.log(error);
-    })
+    });
+    this.props.toggleMealRecordForm();
   }
 
   handleFormChange(event) {

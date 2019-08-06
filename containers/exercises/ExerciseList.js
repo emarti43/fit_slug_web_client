@@ -32,7 +32,7 @@ export default class ExerciseList extends React.Component {
         <a className="waves-effect waves-teal btn-flat blue" name="exerciseFormShow"onClick={this.toggleForm}>
           { this.state.exerciseFormShow ? "Hide Form" : "Create Exercise" }
         </a>
-        { this.state.exerciseFormShow ?<ExerciseForm toggleExerciseForm={this.toggleForm}/> : "" }
+        { this.state.exerciseFormShow ?<ExerciseForm toggleExerciseForm={this.toggleForm} submitRequest= 'post'/> : "" }
         </div>);
     }
 }
