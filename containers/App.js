@@ -104,6 +104,20 @@ export default class App extends React.Component {
               <Route exact path='/signup' render={props => <Signup {...props} handleLoginStatus={this.handleLoginStatus}/>}/>
               <Route exact path='/about' component={About}/>
             </Switch>
+            <footer className="page-footer light-blue">
+              <div className="container">
+                <div className="row">
+                  <div className="col l6 s12">
+                    <h5>Fit Slug</h5>
+                  </div>
+                </div>
+              </div>
+              <div className="footer-copyright">
+                <div className="container">
+                  Made by emarti43
+                </div>
+              </div>
+            </footer>
           </div>
         </Router>
       );

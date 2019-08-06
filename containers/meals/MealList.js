@@ -26,12 +26,12 @@ export default class MealList extends React.Component {
           <Meal mealData={meal} key={i}/>
       );
         return <div className="row">
-        <h3 className = "blue-text">Meal List</h3>
-        <a className="waves-effect waves-teal btn-flat blue" name="exerciseFormShow"onClick={this.toggleForm}>
+        <h5 className = "light-blue-text">Meal List</h5>
+        {listElements}
+        <a className="waves-effect waves-teal btn-flat light-blue" name="exerciseFormShow"onClick={this.toggleForm}>
           { this.state.showMealForm ? "Hide Form" : "Create Meal" }
         </a>
         { this.state.showMealForm ?<MealForm toggleMealForm={this.toggleForm}/> : "" }
-        {listElements}
         </div>
     }
 }

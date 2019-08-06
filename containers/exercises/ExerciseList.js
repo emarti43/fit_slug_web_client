@@ -27,12 +27,12 @@ export default class ExerciseList extends React.Component {
           <Exercise exerciseData = {exercise.exercise} muscles = {exercise.muscles.map((muscles) => muscles.id)} key = {i}/>
       );
         return <div>
-        <h3 className = "blue-text">Exercises</h3>
+        <h5 className = "light-blue-text">Exercises</h5>
+        {listElements}
         <a className="waves-effect waves-teal btn-flat blue" name="exerciseFormShow"onClick={this.toggleForm}>
           { this.state.exerciseFormShow ? "Hide Form" : "Create Exercise" }
         </a>
         { this.state.exerciseFormShow ?<ExerciseForm toggleExerciseForm={this.toggleForm}/> : "" }
-        {listElements}
         </div>
     }
 }

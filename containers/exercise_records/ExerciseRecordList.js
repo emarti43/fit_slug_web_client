@@ -19,7 +19,7 @@ export default class ExerciseRecordList extends React.Component {
       );
         return (
           <div>
-            <h3 className = "blue-text">Your Exercises</h3>
+            <h5 className="light-blue-text"> Your Exercises </h5>
             {listElements}
           </div>
         );
