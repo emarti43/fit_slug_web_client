@@ -10,6 +10,18 @@ export default class MealRecord extends React.Component {
           showEditForm: false,
         }
         this.toggleForm = this.toggleForm.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    handleDelete(event) {
+      event.preventDefault();
+      RequestTemplate.genericRequest('delete', 'meal_records/' + this.props.mealData.id)
+      .then( (response) => {
+        console.log(response);
+      })
+      .catch( (error) => {
+        console.log(error);
+      });
     }
 
     toggleForm(event) {
@@ -34,28 +46,38 @@ export default class MealRecord extends React.Component {
       var mealItem =
       <div className = "card">
         <div className="card-content">
-          <h4 className="card-title">{this.props.mealData.meal.name}</h4>
-           <span className="card-title activator grey-text text-darken-4">{this.props.mealData.name}<i className="material-icons right">more_vert</i></span>
-           <b>Number of servings</b> {this.props.mealData.num_servings}
-           <ul>
-            <li>
-              <b>Calories:</b> {totals(this.props.mealData, 'kcal')}
-            </li>
-            <li>
-              <b>Protein:</b> {totals(this.props.mealData, 'protein')}
-            </li>
-            <li>
-              <b>Fat:</b> {totals(this.props.mealData, 'total_fat')}
-            </li>
-            <li>
-              <b>Carbs:</b> {totals(this.props.mealData, 'total_carb')}
-            </li>
-           </ul>
+           <div className="row">
+             <NutritionCard mealData = {this.props.mealData.meal}/>
+             <div className="col s6">
+               <span className="card-title activator grey-text text-darken-4">
+               Logging Info
+               </span>
+               <b>Number of servings</b> {this.props.mealData.num_servings}
+               <ul>
+                 <li>
+                    <b>Calories:</b> {totals(this.props.mealData, 'kcal')}
+                 </li>
+                 <li>
+                    <b>Protein:</b> {totals(this.props.mealData, 'protein')}
+                 </li>
+                 <li>
+                    <b>Fat:</b> {totals(this.props.mealData, 'total_fat')}
+                 </li>
+                 <li>
+                    <b>Carbs:</b> {totals(this.props.mealData, 'total_carb')}
+                 </li>
+               </ul>
+             </div>
+           </div>
         </div>
-        <NutritionCard mealData = {this.props.mealData.meal}/>
+
         <div className="card-action">
           <a className="waves-effect btn-flat light-blue-text" onClick={this.toggleForm}>
             {(this.state.showEditForm)? "Hide Form":"Edit Entry"}
+          </a>
+          <a className="waves-effect waves-light btn-flat red-text"
+            onClick={this.handleDelete}>
+            Delete Record
           </a>
           {(this.state.showEditForm)? editMealForm: ''}
         </div>

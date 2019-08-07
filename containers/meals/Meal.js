@@ -13,6 +13,18 @@ export default class Meal extends React.Component {
         };
         this.toggleForm = this.toggleForm.bind(this);
         this.toggleEditForm = this.toggleEditForm.bind(this);
+        this.handleDelete = this.handleDelete.bind(this)
+    }
+
+    handleDelete(event) {
+      event.preventDefault();
+      RequestTemplate.genericRequest('delete', 'meals/' + this.props.mealData.id)
+      .then( (response) => {
+        console.log(response);
+      })
+      .catch( (error) => {
+        console.log(error);
+      });
     }
 
     toggleForm(event) {
@@ -39,17 +51,22 @@ export default class Meal extends React.Component {
         <div className="card-image waves-effect waves-block waves-light">
         </div>
         <div className="card-content">
-          <span className="card-title activator grey-text text-darken-4">{this.props.mealData.name}<i className="material-icons right">more_vert</i></span>
+          <div className="row">
+          <NutritionCard mealData={this.props.mealData}/>
+          </div>
         </div>
-        <NutritionCard mealData={this.props.mealData}/>
         <div className="card-action">
           <a className="waves-effect waves-teal btn-flat light-blue-text" onClick={this.toggleForm}>
             {(this.state.showForm) ? "Hide Form":"Add Meal"}
           </a>
-          {(this.state.showForm) ? mealRecordForm: ''}
           <a className="waves-effect waves-teal btn-flat light-blue-text" onClick={this.toggleEditForm}>
             {(this.state.showEditForm) ? "Hide Form": "Edit Nutritional Info"}
           </a>
+          <a className="waves-effect waves-light btn-flat red-text"
+            onClick={this.handleDelete}>
+            Delete Meal
+          </a>
+          {(this.state.showForm) ? mealRecordForm: ''}
           {(this.state.showEditForm) ? mealEditForm: ''}
         </div>
 

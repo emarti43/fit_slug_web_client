@@ -50,11 +50,13 @@ export default class MealForm extends React.Component {
 
     return (
       <div className="card">
-        <span className="card-title">Meal</span>
-        <form onSubmit={this.handleSubmit}>
-          {listOfFields}
-          <input type="submit" className="waves-effect waves-teal btn-flat light-blue-text" value="Submit"/>
-        </form>
+        <div className="card-content">
+          <span className="card-title">Meal</span>
+          <form onSubmit={this.handleSubmit}>
+            {listOfFields}
+            <input type="submit" className="waves-effect waves-teal btn-flat light-blue-text" value="Submit"/>
+          </form>
+        </div>
       </div>
     );
   }

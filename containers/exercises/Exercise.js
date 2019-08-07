@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ExerciseRecordForm from '../exercise_records/ExerciseRecordForm';
 import ExerciseForm from './ExerciseForm';
+import RequestTemplate from '../utils/RequestTemplate';
 
 export default class Exercise extends React.Component {
     constructor(props) {
@@ -29,6 +30,13 @@ export default class Exercise extends React.Component {
 
     handleDelete(event) {
       event.preventDefault();
+      RequestTemplate.genericRequest('delete', 'exercises/' + this.props.exerciseData.id)
+      .then( (response) => {
+        console.log(response);
+      })
+      .catch( (error) => {
+        console.log(error);
+      });
     }
 
     render () {
@@ -37,9 +45,9 @@ export default class Exercise extends React.Component {
       var editExerciseForm = this.state.showEditForm ? <ExerciseForm exerciseData={this.props.exerciseData} submitRequest='put' toggleExerciseForm={this.toggleEditForm}/> : '';
 
       const listElements =
-        <div className="row card-reveal">
+        <div className="col s6">
           <div className="colcard">
-            <span className="card-title grey-text text-darken-4">{this.props.exerciseData.name}<i className="material-icons right">close</i></span>
+              <b> Muscles Used</b>
             <ul>
             {this.props.muscles.map((muscle, i) => <li key={i}> {muscle.name} </li>)}
             </ul>
@@ -49,23 +57,32 @@ export default class Exercise extends React.Component {
       return (
         <div className = "card">
           <div className="card-content">
-            <span className="card-title activator grey-text text-darken-4">
-            {this.props.exerciseData.name}<i className="right material-icons">more_vert</i>
-            </span>
+            <div className="row">
+              <div className="col s6">
+                <span className="card-title activator grey-text text-darken-4">
+                  {this.props.exerciseData.name}
+                </span>
+                {listElements}
+              </div>
+            </div>
           </div>
-          {listElements}
           <div className="card-action">
             <a className="waves-effect waves-light btn-flat light-blue-text"
               onClick={this.toggleForm}>
               {(this.state.showForm)? "Hide Form":"Add Exercise"}
             </a>
-            {exerciseRecordForm}
+
             <a className="waves-effect waves-light btn-flat light-blue-text"
               onClick={this.toggleEditForm}>
               {(this.state.showEditForm)? "Hide Form":"Edit Exercise Info"}
             </a>
-            {editExerciseForm}
 
+            <a className="waves-effect waves-light btn-flat red-text"
+              onClick={this.handleDelete}>
+              Delete Exercise
+            </a>
+            {exerciseRecordForm}
+            {editExerciseForm}
           </div>
         </div>
       );

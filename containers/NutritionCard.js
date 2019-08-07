@@ -5,9 +5,8 @@ export default class NutritionCard extends React.Component {
   }
   render() {
     return (
-      <div className="row card-reveal">
-          <div className="colcard">
-          <span className="card-title grey-text text-darken-4">{this.props.mealData.name}<i className="material-icons right">close</i></span>
+          <div className="col s6">
+            <span className="card-title grey-text text-darken-4">{this.props.mealData.name}</span>
             <ul>
               <li> <b>Amount Per</b> {this.props.mealData.serving_size}</li>
               <div className="divider"></div>
@@ -35,7 +34,6 @@ export default class NutritionCard extends React.Component {
               <div className="divider"></div>
             </ul>
           </div>
-      </div>
     );
   }
 }

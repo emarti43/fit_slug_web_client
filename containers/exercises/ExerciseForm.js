@@ -69,16 +69,20 @@ export default class ExerciseForm extends React.Component {
     <ExerciseFormMuscles key={i} muscle={muscle} handleFormChange={this.handleFormChange}/>);
     return (
       <div className="card">
-        <span className="card-title">Exercise</span>
-        <form onSubmit={this.handleSubmit}>
-          <div className="input-field col s12">
-            <label htmlFor="exerciseName">Name of Exercise</label>
-            <input type="text" name="exerciseName"value={this.state.name} onChange={this.handleFormChange}></input>
-          </div>
-          <span>Muscles Used:</span>
-          <div className="row">{muscleCheckboxes}</div>
-          <input type="submit" className="waves-effect waves-teal btn-flat light-blue-text" value="Submit"/>
-        </form>
+        <div className="card-content">
+          <span className="card-title">
+            Exercise
+          </span>
+          <form onSubmit={this.handleSubmit}>
+            <div className="input-field col s12">
+              <label htmlFor="exerciseName">Name of Exercise</label>
+              <input type="text" name="exerciseName"value={this.state.name} onChange={this.handleFormChange}></input>
+            </div>
+            <span>Muscles Used:</span>
+            <div className="row">{muscleCheckboxes}</div>
+            <input type="submit" className="waves-effect waves-teal btn-flat light-blue-text" value="Submit"/>
+          </form>
+        </div>
       </div>
     );
   }
