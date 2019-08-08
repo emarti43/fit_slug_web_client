@@ -4,9 +4,21 @@ import MealRecord from './MealRecord'
 export default class MealRecordList extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+          mealRecordList: [],
+        }
     }
 
     componentDidMount() {
+    }
+
+    static getDerivedStateFromProps(props, state) {
+      if (props.mealRecordList.length !== state.mealRecordList.length) {
+        return {
+          mealRecordList: props.mealRecordList
+        }
+      }
+      return null
     }
 
     componentWillUnmount() {
@@ -14,9 +26,13 @@ export default class MealRecordList extends React.Component {
     }
 
     render () {
-      const listElements = this.props.mealRecordList.map((meal, i) =>
-          <MealRecord mealData={meal} key={i}/>
-      );
+      var listElements = '';
+      if (this.state.mealRecordList) {
+         listElements = this.state.mealRecordList.map((meal, i) =>
+            <MealRecord mealData={meal} key={i}/>
+        );
+      }
+
       function totals (fieldName) {
         return (sum, mealRecord) => mealRecord.num_servings*mealRecord.meal[fieldName] + sum;
       }
