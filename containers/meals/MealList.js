@@ -40,7 +40,7 @@ export default class MealList extends React.Component {
         return <div className="row">
         <h5 className = "light-blue-text">Meal List</h5>
         {listElements}
-        <a className="waves-effect waves-teal btn light-blue-text white" name="exerciseFormShow"onClick={this.toggleForm}>
+        <a className="waves-effect waves-teal btn light-blue white-text" name="exerciseFormShow"onClick={this.toggleForm}>
           { this.state.showMealForm ? "Hide Form" : "Create Meal" }
         </a>
         { this.state.showMealForm ?

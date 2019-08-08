@@ -10,12 +10,10 @@ export default class ExerciseRecordList extends React.Component {
         this.deleteElement = this.deleteElement.bind(this);
     }
 
-    componentDidMount() {
-    }
-
     deleteElement(id) {
-      this.setState((prevState) => {
-        return {exerciseRecordList: prevState.exerciseRecordList.filter(element => element.exercise_record.id !== id)}
+      this.setState(
+        {
+          exerciseRecordList: this.state.exerciseRecordList.filter(record => record.exercise_record.id !== id)
       });
     }
 
@@ -26,10 +24,6 @@ export default class ExerciseRecordList extends React.Component {
         }
       }
       return null
-    }
-
-    componentWillUnmount() {
-
     }
 
     render () {

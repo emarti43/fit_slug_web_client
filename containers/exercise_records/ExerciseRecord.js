@@ -25,11 +25,11 @@ export default class ExerciseRecord extends React.Component {
       RequestTemplate.genericRequest('delete', 'exercise_records/' + this.props.exerciseData.exercise_record.id)
       .then( (response) => {
         console.log(response);
+        this.props.deleteElement(this.props.exerciseData.exercise_record.id);
       })
       .catch( (error) => {
         console.log(error);
       });
-      this.props.deleteElement(this.props.exerciseData.exercise_record.id);
     }
 
     render () {
