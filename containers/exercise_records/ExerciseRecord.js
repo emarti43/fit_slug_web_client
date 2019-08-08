@@ -19,7 +19,7 @@ export default class ExerciseRecord extends React.Component {
       event.preventDefault();
       this.setState( { showForm: !this.state.showForm } );
     }
-    
+
     handleDelete (event) {
       event.preventDefault();
       RequestTemplate.genericRequest('delete', 'exercise_records/' + this.props.exerciseData.exercise_record.id)
@@ -28,7 +28,8 @@ export default class ExerciseRecord extends React.Component {
       })
       .catch( (error) => {
         console.log(error);
-      })
+      });
+      this.props.deleteElement(this.props.exerciseData.exercise_record.id);
     }
 
     render () {
@@ -39,7 +40,7 @@ export default class ExerciseRecord extends React.Component {
           {this.props.exerciseData.muscles.map((muscle, i) => <li key={i}> {muscle.name} </li>)}
           </ul>
       </div>;
-      var editForm = <ExerciseRecordForm exerciseData={this.props.exerciseData} submitRequest='put'/>;
+      var editForm = <ExerciseRecordForm exerciseData={this.props.exerciseData} submitRequest='put' toggleExerciseRecordForm= {this.toggleForm}/>;
         return (
           <div className="card">
             <div className="card-content">

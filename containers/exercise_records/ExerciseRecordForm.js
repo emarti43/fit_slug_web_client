@@ -41,9 +41,9 @@ export default class ExerciseRecordForm extends React.Component {
     .catch((error) => {
       console.log(error);
     });
-    this.props.toggleExerciseRecordForm();
+    this.props.toggleExerciseRecordForm(event);
   }
-  
+
   handleFormChange(event) {
     event.preventDefault();
     this.setState({[event.target.name]: event.target.value})

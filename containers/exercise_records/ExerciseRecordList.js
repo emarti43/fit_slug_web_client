@@ -7,11 +7,18 @@ export default class ExerciseRecordList extends React.Component {
         this.state = {
           exerciseRecordList: [],
         }
+        this.deleteElement = this.deleteElement.bind(this);
     }
 
     componentDidMount() {
-      this.setState({exerciseRecordList: this.props.exerciseRecordList});
     }
+
+    deleteElement(id) {
+      this.setState((prevState) => {
+        return {exerciseRecordList: prevState.exerciseRecordList.filter(element => element.exercise_record.id !== id)}
+      });
+    }
+
     static getDerivedStateFromProps(props, state) {
       if (props.exerciseRecordList.length !== state.exerciseRecordList.length) {
         return {
@@ -28,8 +35,8 @@ export default class ExerciseRecordList extends React.Component {
     render () {
       var listElements = '';
       if (this.state.exerciseRecordList) {
-        const listElements =  this.state.exerciseRecordList.map((exercise, i) =>
-            <ExerciseRecord exerciseData = {exercise} key = {i}/>
+        listElements =  this.state.exerciseRecordList.map((exercise, i) =>
+            <ExerciseRecord exerciseData = {exercise} key = {i} deleteElement={this.deleteElement}/>
         );
       }
       return (
