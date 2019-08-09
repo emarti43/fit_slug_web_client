@@ -43,7 +43,10 @@ export default class Exercise extends React.Component {
     render () {
       var exerciseRecordForm = this.state.showForm ? <ExerciseRecordForm exerciseData={this.props.exerciseData} submitRequest='post' toggleExerciseRecordForm={this.toggleForm}/> : '';
 
-      var editExerciseForm = this.state.showEditForm ? <ExerciseForm exerciseData={this.props.exerciseData} submitRequest='put' toggleExerciseForm={this.toggleEditForm}/> : '';
+      var editExerciseForm = this.state.showEditForm ? <ExerciseForm exerciseData={this.props.exerciseData}
+      submitRequest='put'
+      toggleExerciseForm={this.toggleEditForm}
+      updateRecord={this.props.updateRecord}/> : '';
 
       const listElements =
         <div className="col s6">

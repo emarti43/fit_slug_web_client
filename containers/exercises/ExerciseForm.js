@@ -42,7 +42,12 @@ export default class ExerciseForm extends React.Component {
     }
     RequestTemplate.genericRequest(this.props.submitRequest, endpoint, params)
     .then((response) =>{
-      console.log(response)
+      console.log(response);
+      if (response.status === 200) {
+        params.exercise.muscles = params.exercise.muscles.map(id => this.state.muscles.find(muscle => muscle.id === id));
+        params.exercise.id = this.props.exerciseData.id;
+        this.props.updateRecord(params);
+      }
     }).catch( function (error) {
       console.log(error);
     })
