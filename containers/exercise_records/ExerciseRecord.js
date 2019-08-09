@@ -40,7 +40,8 @@ export default class ExerciseRecord extends React.Component {
           {this.props.exerciseData.muscles.map((muscle, i) => <li key={i}> {muscle.name} </li>)}
           </ul>
       </div>;
-      var editForm = <ExerciseRecordForm exerciseData={this.props.exerciseData} submitRequest='put' toggleExerciseRecordForm= {this.toggleForm}/>;
+      var editForm =
+      <ExerciseRecordForm exerciseData={this.props.exerciseData} submitRequest='put' toggleExerciseRecordForm= {this.toggleForm} updateRecord={this.props.updateRecord}/>;
         return (
           <div className="card">
             <div className="card-content">
