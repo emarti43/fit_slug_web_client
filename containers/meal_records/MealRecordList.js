@@ -9,6 +9,7 @@ export default class MealRecordList extends React.Component {
           mealRecordList: [],
         }
         this.deleteElement = this.deleteElement.bind(this);
+        this.updateElement = this.updateElement.bind(this);
     }
 
     deleteElement(id){
@@ -18,7 +19,22 @@ export default class MealRecordList extends React.Component {
         }
       );
     }
-    
+
+    updateElement(data) {
+      this.setState({mealRecordList: this.state.mealRecordList.map(element => {
+        if (element.id === data.id) {
+          return({
+            num_servings: data.meal_record.num_servings,
+            id: element.id,
+            meal: element.meal,
+            user_id: element.user_id,
+          });
+        } else {
+          return element;
+        }
+      })});
+    }
+
     componentDidMount() {
       RequestTemplate.genericRequest('get', 'meal_records')
       .then( response => {
@@ -32,7 +48,7 @@ export default class MealRecordList extends React.Component {
       var listElements = '';
       if (this.state.mealRecordList) {
          listElements = this.state.mealRecordList.map((meal, i) =>
-            <MealRecord mealData={meal} key={i} deleteElement={this.deleteElement}/>
+            <MealRecord mealData={meal} key={i} deleteElement={this.deleteElement} updateRecord={this.updateElement}/>
         );
       }
 

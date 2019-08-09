@@ -13,7 +13,7 @@ export default class Meal extends React.Component {
         };
         this.toggleForm = this.toggleForm.bind(this);
         this.toggleEditForm = this.toggleEditForm.bind(this);
-        this.handleDelete = this.handleDelete.bind(this)
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleDelete(event) {
@@ -46,7 +46,7 @@ export default class Meal extends React.Component {
     }
     render () {
       var mealRecordForm = <MealRecordForm mealData={this.props.mealData} submitRequest='post' toggleMealRecordForm={this.toggleForm}/>
-      var mealEditForm = <MealForm mealData={this.props.mealData} submitRequest='put' toggleMealForm={this.toggleEditForm}/>
+      var mealEditForm = <MealForm mealData={this.props.mealData} submitRequest='put' toggleMealForm={this.toggleEditForm} updateRecord={this.props.updateRecord}/>
       var mealItem =
       <div className="card sticky-action">
         <div className="card-image waves-effect waves-block waves-light">

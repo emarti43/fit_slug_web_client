@@ -12,16 +12,28 @@ export default class MealList extends React.Component {
         }
         this.toggleForm = this.toggleForm.bind(this);
         this.deleteElement = this.deleteElement.bind(this);
+        this.updateElement = this.updateElement.bind(this);
     }
     toggleForm(event) {
       this.setState({showMealForm: !this.state.showMealForm})
     }
+
     deleteElement(id) {
       this.setState(
         {
           mealList: this.state.mealList.filter(record => record.id !== id)
         }
       );
+    }
+
+    updateElement(data) {
+      this.setState({mealList: this.state.mealList.map(element => {
+        if (element.id === data.id) {
+          return data;
+        } else {
+          return element;
+        }
+      })});
     }
 
     componentDidMount() {
@@ -38,7 +50,7 @@ export default class MealList extends React.Component {
       var listElements = '';
       if (this.state.mealList) {
         listElements =  this.state.mealList.map((meal, i) =>
-            <Meal mealData={meal} key={i}/>
+            <Meal mealData={meal} key={i} updateRecord={this.updateElement}/>
         );
       }
         return <div className="row">

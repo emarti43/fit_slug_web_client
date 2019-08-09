@@ -42,7 +42,7 @@ export default class MealRecord extends React.Component {
         return mealData.num_servings*mealData.meal[fieldName];
       }
 
-      var editMealForm =<MealRecordForm mealData={this.props.mealData} submitRequest='put' toggleMealRecordForm={this.toggleForm}/>;
+      var editMealForm =<MealRecordForm mealData={this.props.mealData} submitRequest='put' toggleMealRecordForm={this.toggleForm} updateRecord={this.props.updateRecord}/>;
 
       var mealItem =
       <div className = "card">
