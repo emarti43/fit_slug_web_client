@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import MealRecord from './MealRecord'
+import MealRecord from './MealRecord';
+import RequestTemplate from '../utils/RequestTemplate';
 
 export default class MealRecordList extends React.Component {
     constructor(props) {
@@ -7,39 +8,41 @@ export default class MealRecordList extends React.Component {
         this.state = {
           mealRecordList: [],
         }
+        this.deleteElement = this.deleteElement.bind(this);
     }
 
-    componentDidMount() {
-    }
-
-    static getDerivedStateFromProps(props, state) {
-      if (props.mealRecordList.length !== state.mealRecordList.length) {
-        return {
-          mealRecordList: props.mealRecordList
+    deleteElement(id){
+      this.setState(
+        {
+          mealRecordList: this.state.mealRecordList.filter(record => record.id !== id)
         }
-      }
-      return null
+      );
     }
-
-    componentWillUnmount() {
-
+    
+    componentDidMount() {
+      RequestTemplate.genericRequest('get', 'meal_records')
+      .then( response => {
+        this.setState({mealRecordList: response.data});
+      }).catch(error => {
+        console.log(error)
+      })
     }
 
     render () {
       var listElements = '';
       if (this.state.mealRecordList) {
          listElements = this.state.mealRecordList.map((meal, i) =>
-            <MealRecord mealData={meal} key={i}/>
+            <MealRecord mealData={meal} key={i} deleteElement={this.deleteElement}/>
         );
       }
 
       function totals (fieldName) {
         return (sum, mealRecord) => mealRecord.num_servings*mealRecord.meal[fieldName] + sum;
       }
-      const totalCalories = this.props.mealRecordList.reduce(totals('kcal'), 0);
-      const totalProtein = this.props.mealRecordList.reduce(totals('protein'), 0);
-      const totalFat = this.props.mealRecordList.reduce(totals('total_fat'), 0);
-      const totalCarbs = this.props.mealRecordList.reduce(totals('total_carb'), 0);
+      const totalCalories = this.state.mealRecordList.reduce(totals('kcal'), 0);
+      const totalProtein = this.state.mealRecordList.reduce(totals('protein'), 0);
+      const totalFat = this.state.mealRecordList.reduce(totals('total_fat'), 0);
+      const totalCarbs = this.state.mealRecordList.reduce(totals('total_carb'), 0);
         return(
         <div className="row ">
           <div>

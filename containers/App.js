@@ -34,17 +34,10 @@ export default class App extends React.Component {
         console.log(error);
       }));
     }
-    componentDidMount() {
-
-    }
 
     handleLogout(event) {
       this.setState({isLoggedIn: false, userName: ''});
       localStorage.removeItem('fit_slug_session');
-    }
-
-    componentWillUnmount() {
-
     }
 
     render () {

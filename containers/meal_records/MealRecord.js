@@ -18,6 +18,7 @@ export default class MealRecord extends React.Component {
       RequestTemplate.genericRequest('delete', 'meal_records/' + this.props.mealData.id)
       .then( (response) => {
         console.log(response);
+        this.props.deleteElement(this.props.mealData.id);
       })
       .catch( (error) => {
         console.log(error);

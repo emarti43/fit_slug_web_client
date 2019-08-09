@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Meal from './Meal';
 import MealForm from './MealForm';
+import RequestTemplate from '../utils/RequestTemplate';
 
 export default class MealList extends React.Component {
     constructor(props) {
@@ -10,25 +11,28 @@ export default class MealList extends React.Component {
           mealList: []
         }
         this.toggleForm = this.toggleForm.bind(this);
+        this.deleteElement = this.deleteElement.bind(this);
     }
     toggleForm(event) {
       this.setState({showMealForm: !this.state.showMealForm})
     }
-    static getDerivedStateFromProps(props, state) {
-      if (props.mealList.length !== state.mealList.length) {
-        return {
-          mealList: props.mealList
+    deleteElement(id) {
+      this.setState(
+        {
+          mealList: this.state.mealList.filter(record => record.id !== id)
         }
-      }
-      return null
+      );
     }
 
     componentDidMount() {
+      RequestTemplate.genericRequest('get', 'meals')
+      .then(response => {
+        this.setState({mealList: response.data});
+      }).catch(errror => {
+        console.log(error);
+      })
     }
 
-    componentWillUnmount() {
-
-    }
 
     render () {
       var listElements = '';

@@ -33,6 +33,7 @@ export default class Exercise extends React.Component {
       RequestTemplate.genericRequest('delete', 'exercises/' + this.props.exerciseData.id)
       .then( (response) => {
         console.log(response);
+        this.props.deleteElement(this.props.exerciseData.id);
       })
       .catch( (error) => {
         console.log(error);

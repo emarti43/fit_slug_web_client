@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import ExerciseRecord from './ExerciseRecord'
+import ExerciseRecord from './ExerciseRecord';
+import RequestTemplate from '../utils/RequestTemplate';
 
 export default class ExerciseRecordList extends React.Component {
     constructor(props) {
@@ -14,23 +15,27 @@ export default class ExerciseRecordList extends React.Component {
       this.setState(
         {
           exerciseRecordList: this.state.exerciseRecordList.filter(record => record.exercise_record.id !== id)
-      });
+        }
+      );
     }
 
-    static getDerivedStateFromProps(props, state) {
-      if (props.exerciseRecordList.length !== state.exerciseRecordList.length) {
-        return {
-          exerciseRecordList: props.exerciseRecordList
-        }
-      }
-      return null
+    componentDidMount() {
+      RequestTemplate.genericRequest('get', 'exercise_records')
+      .then(response => {
+        console.log(response);
+        this.setState({exerciseRecordList: response.data});
+      })
+      .catch(error => {
+        console.log(error);
+      })
     }
+
 
     render () {
       var listElements = '';
       if (this.state.exerciseRecordList) {
         listElements =  this.state.exerciseRecordList.map((exercise, i) =>
-            <ExerciseRecord exerciseData = {exercise} key = {i} deleteElement={this.deleteElement}/>
+            <ExerciseRecord exerciseData = {exercise} key = {exercise.exercise_record.id} deleteElement={this.deleteElement}/>
         );
       }
       return (
