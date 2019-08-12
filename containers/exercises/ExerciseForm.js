@@ -48,11 +48,11 @@ export default class ExerciseForm extends React.Component {
         params.exercise.id = this.props.exerciseData.id;
         this.props.updateRecord(params);
       }
+      this.props.toggleExerciseForm(event);
     }).catch( function (error) {
       console.log(error);
     })
     event.preventDefault();
-    this.props.toggleExerciseForm(event);
   }
 
   componentDidMount() {

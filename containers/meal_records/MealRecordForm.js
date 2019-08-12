@@ -36,11 +36,11 @@ export default class MealRecordForm extends React.Component {
         params.id = this.props.mealData.id;
         this.props.updateRecord(params);
       }
+      this.props.toggleMealRecordForm(event);
     })
     .catch((error) => {
       console.log(error);
     });
-    this.props.toggleMealRecordForm(event);
   }
 
   handleFormChange(event) {

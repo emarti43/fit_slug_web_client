@@ -8,6 +8,7 @@ export default class ExerciseRecordForm extends React.Component {
       numReps: '',
       numSets: '',
       weight: '',
+      unsuccessfulSubmit: false,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
@@ -36,16 +37,17 @@ export default class ExerciseRecordForm extends React.Component {
     }
     RequestTemplate.genericRequest(this.props.submitRequest, endpoint, params)
     .then((response) => {
-      console.log(response);
       if (response.status === 200) {
         params.exercise_record.id = this.props.exerciseData.exercise_record.id;
         this.props.updateRecord(params);
       }
+      this.props.toggleExerciseRecordForm(event);
     })
     .catch((error) => {
       console.log(error);
+      this.setState({unsuccessfulSubmit: true});
     });
-    this.props.toggleExerciseRecordForm(event);
+
   }
 
   handleFormChange(event) {

@@ -22,11 +22,11 @@ export default class MealForm extends React.Component {
         params.meal.id = this.props.mealData.id;
         this.props.updateRecord(params.meal);
       }
+      this.props.toggleMealForm(event);
     }).catch((error) => {
       console.log(error);
     });
     event.preventDefault();
-    this.props.toggleMealForm(event);
   }
   handleFormChange(event) {
     this.setState({[event.target.name]: event.target.value})

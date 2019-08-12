@@ -11,6 +11,7 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
+      unsuccessfulLogin: false,
     }
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -37,13 +38,14 @@ class Login extends Component {
         console.log('404 response');
       } else {
         localStorage.setItem('fit_slug_session', response.data.token);
-        this.props.handleLoginStatus();
         this.props.history.push('/');
       }
     })
     .catch((error) => {
+      this.setState({unsuccessfulLogin: true});
       console.log(error);
     });
+    this.props.handleLoginStatus();
   }
 
   render() {
@@ -51,8 +53,7 @@ class Login extends Component {
       <div className='row container'>
         <h4> Login </h4>
         <form className='col s6' onSubmit={this.handleFormSubmit}>
-
-
+          {this.state.unsuccessfulLogin ? <a className="red-text"> Unsuccessful Login. Please try again</a>: ''}
           <div className='input-field col s6'>
             <input type="text" id='username'
             name='username' className="validate"
@@ -77,7 +78,7 @@ class Login extends Component {
 
           <div className='row'>
             <input type="submit"
-            className="waves-effect waves-light btn blue"
+            className="waves-effect waves-light btn blue white-text"
             value="Submit"/>
           </div>
 
