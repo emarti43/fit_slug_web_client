@@ -25,6 +25,8 @@ export default class MealForm extends React.Component {
       if (response.status == 200) {
         params.meal.id = this.props.mealData.id;
         this.props.updateRecord(params.meal);
+      } else {
+        this.props.addElement(params.meal);
       }
       this.props.toggleMealForm(event);
     }).catch((error) => {

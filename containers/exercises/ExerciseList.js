@@ -13,6 +13,7 @@ export default class ExerciseList extends React.Component {
         this.toggleForm = this.toggleForm.bind(this);
         this.deleteElement = this.deleteElement.bind(this);
         this.updateElement = this.updateElement.bind(this);
+        this.addElement = this.addElement.bind(this);
     }
 
     deleteElement(id) {
@@ -34,6 +35,12 @@ export default class ExerciseList extends React.Component {
           return element;
         }
       })});
+    }
+
+    addElement(exercise) {
+      var appendedList = this.state.exerciseList;
+      appendedList.push(exercise);
+      this.setState({MealList: appendedList});
     }
 
     toggleForm(event) {
@@ -72,7 +79,7 @@ export default class ExerciseList extends React.Component {
       <a className="waves-effect waves-teal btn light-blue white-text" name="exerciseFormShow"onClick={this.toggleForm}>
         { this.state.exerciseFormShow ? "Hide Form" : "Create Exercise" }
       </a>
-      { this.state.exerciseFormShow ?<ExerciseForm toggleExerciseForm={this.toggleForm} submitRequest= 'post'/> : "" }
+      { this.state.exerciseFormShow ?<ExerciseForm toggleExerciseForm={this.toggleForm} submitRequest= 'post' addElement={this.addElement}/> : "" }
       </div>);
     }
 }

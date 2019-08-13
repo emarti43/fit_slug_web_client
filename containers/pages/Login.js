@@ -32,7 +32,6 @@ class Login extends Component {
         }
     };
     RequestTemplate.genericRequest('post', 'login', payload)
-
     .then((response) => {
       if (response.status != 200) {
         console.log('404 response');

@@ -13,6 +13,7 @@ export default class MealList extends React.Component {
         this.toggleForm = this.toggleForm.bind(this);
         this.deleteElement = this.deleteElement.bind(this);
         this.updateElement = this.updateElement.bind(this);
+        this.addElement = this.addElement.bind(this);
     }
     toggleForm(event) {
       this.setState({showMealForm: !this.state.showMealForm})
@@ -24,6 +25,12 @@ export default class MealList extends React.Component {
           mealList: this.state.mealList.filter(record => record.id !== id)
         }
       );
+    }
+    
+    addElement(meal) {
+      var appendedList = this.state.mealList;
+      appendedList.push(meal);
+      this.setState({MealList: appendedList});
     }
 
     updateElement(data) {
@@ -60,7 +67,7 @@ export default class MealList extends React.Component {
           { this.state.showMealForm ? "Hide Form" : "Create Meal" }
         </a>
         { this.state.showMealForm ?
-          <MealForm toggleMealForm={this.toggleForm} submitRequest='post'/>
+          <MealForm toggleMealForm={this.toggleForm} submitRequest='post' addElement={this.addElement}/>
           : "" }
         </div>
     }

@@ -48,6 +48,8 @@ export default class ExerciseForm extends React.Component {
         params.exercise.muscles = params.exercise.muscles.map(id => this.state.muscles.find(muscle => muscle.id === id));
         params.exercise.id = this.props.exerciseData.id;
         this.props.updateRecord(params);
+      } else {
+        this.props.addElement(response.data);
       }
       this.props.toggleExerciseForm(event);
     }).catch( function (error) {
@@ -84,7 +86,7 @@ export default class ExerciseForm extends React.Component {
             {this.state.unsuccessfulSubmit ? <a className="red-text"> Unsuccessful Submit. Please try again</a>: ''}
             <div className="input-field col s12">
               <label htmlFor="exerciseName">Name of Exercise</label>
-              <input type="text" name="exerciseName"value={this.state.name} onChange={this.handleFormChange}></input>
+              <input type="text" name="exerciseName" value={this.state.name} onChange={this.handleFormChange}></input>
             </div>
             <span>Muscles Used:</span>
             <div className="row">{muscleCheckboxes}</div>
