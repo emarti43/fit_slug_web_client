@@ -6,6 +6,7 @@ export default class MealRecordForm extends React.Component {
     super(props);
     this.state = {
       numServings: '',
+      unsuccessfulSubmit: false,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
@@ -40,6 +41,7 @@ export default class MealRecordForm extends React.Component {
     })
     .catch((error) => {
       console.log(error);
+      this.setState({unsuccessfulSubmit: true});
     });
   }
 
@@ -52,6 +54,7 @@ export default class MealRecordForm extends React.Component {
     return(
       <form onSubmit={this.handleSubmit}>
         <div className="input-field col s12">
+          {this.state.unsuccessfulSubmit ? <a className="red-text"> Unsuccessful Submit. Please try again</a>: ''}
           <input type="text"
           id="numServings"
           name="numServings"

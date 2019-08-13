@@ -11,7 +11,7 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      unsuccessfulLogin: false,
+      unsuccessfulSubmit: false,
     }
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -42,7 +42,7 @@ class Login extends Component {
       }
     })
     .catch((error) => {
-      this.setState({unsuccessfulLogin: true});
+      this.setState({unsuccessfulSubmit: true});
       console.log(error);
     });
     this.props.handleLoginStatus();
@@ -53,7 +53,7 @@ class Login extends Component {
       <div className='row container'>
         <h4> Login </h4>
         <form className='col s6' onSubmit={this.handleFormSubmit}>
-          {this.state.unsuccessfulLogin ? <a className="red-text"> Unsuccessful Login. Please try again</a>: ''}
+          {this.state.unsuccessfulSubmit ? <a className="red-text"> Unsuccessful Login. Please try again</a>: ''}
           <div className='input-field col s6'>
             <input type="text" id='username'
             name='username' className="validate"

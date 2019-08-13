@@ -8,6 +8,7 @@ export default class ExerciseForm extends React.Component {
     this.state = {
       muscles: [],
       exerciseName: '',
+      unsuccessfulSubmit: false,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
@@ -51,6 +52,7 @@ export default class ExerciseForm extends React.Component {
       this.props.toggleExerciseForm(event);
     }).catch( function (error) {
       console.log(error);
+      this.setState({unsuccessfulSubmit: true});
     })
     event.preventDefault();
   }
@@ -79,6 +81,7 @@ export default class ExerciseForm extends React.Component {
             Exercise
           </span>
           <form onSubmit={this.handleSubmit}>
+            {this.state.unsuccessfulSubmit ? <a className="red-text"> Unsuccessful Submit. Please try again</a>: ''}
             <div className="input-field col s12">
               <label htmlFor="exerciseName">Name of Exercise</label>
               <input type="text" name="exerciseName"value={this.state.name} onChange={this.handleFormChange}></input>

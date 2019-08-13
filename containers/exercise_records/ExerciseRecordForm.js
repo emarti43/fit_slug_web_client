@@ -58,6 +58,7 @@ export default class ExerciseRecordForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        {this.state.unsuccessfulSubmit ? <a className="red-text"> Unsuccessful Submit. Please try again</a>: ''}
         <div className="input-field">
           <input type="text"
           id="numSets"
