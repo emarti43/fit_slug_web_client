@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "./node_modules/.bin/webpack-dev-server --config ./webpack/webpack.dev.config.js"
+    "staging": "./node_modules/.bin/webpack-dev-server --config ./webpack/config.js --define process.env.API_ROOT='\"https://fit-slug.herokuapp.com/api/\"'",
+    "dev": "./node_modules/.bin/webpack-dev-server --config ./webpack/config.js --define process.env.API_ROOT='\"http://localhost:3000/api/\"'"
   },
   "repository": {
     "type": "git",
     "url": "(https://github.com/emarti43/fit_slug_web_client.git)"
   },
-  "author": "",
+  "author": "emarti43",
   "license": "ISC",
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
