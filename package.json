@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "staging": "./node_modules/.bin/webpack-dev-server --config ./webpack/config.js --define process.env.API_ROOT='\"https://fit-slug.herokuapp.com/api/\"'",
+    "start": "./node_modules/.bin/webpack-dev-server --config ./webpack/config.js --define process.env.API_ROOT='\"https://fit-slug.herokuapp.com/api/\"'",
     "dev": "./node_modules/.bin/webpack-dev-server --config ./webpack/config.js --define process.env.API_ROOT='\"http://localhost:3000/api/\"'"
   },
   "repository": {
