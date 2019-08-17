@@ -28,7 +28,8 @@ module.exports = {
     ]
   },
     output: {
-      path: parentDir + '/dist',
+      path: parentDir,
+      publicPath: '/',
       filename: 'bundle.js'
   }
 }
