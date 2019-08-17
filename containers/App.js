@@ -69,12 +69,12 @@ export default class App extends React.Component {
       return (
         <Router>
           <div>
-            <nav className='navbar navbar-expand-lg navbar-dark light-blue'>
+            <nav className='navbar navbar-dark light-blue'>
               <div className='nav-wrapper container'>
-                <a className='brand-logo'>
+                <a className='brand-logo left'>
                 Fit Slug
                 </a>
-                <ul id='nav-mobile'className="right hide-on-med-and-down">
+                <ul id='nav-mobile'className="right">
                   {userWelcome}
                   <li>
                     <Link to={'/'}
