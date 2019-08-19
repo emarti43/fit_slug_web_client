@@ -27,11 +27,21 @@ export default class App extends React.Component {
       RequestTemplate.genericRequest('get', 'validate')
       .then((response => {
         if (response.status == '200') {
-          this.setState({userName: response.data.username, isLoggedIn:true})
+          this.setState(
+            {
+            userName: response.data.username,
+            isLoggedIn: true
+            }
+          );
         }
       }))
       .catch((error => {
         console.log(error);
+        this.setState(
+          {
+            isLoggedIn: false
+          }
+        );
       }));
     }
 
@@ -40,17 +50,23 @@ export default class App extends React.Component {
       localStorage.removeItem('fit_slug_session');
     }
 
+    componentdidMount() {
+      this.handleLoginStatus();
+    }
+
     render () {
       if (this.state.isLoggedIn) {
-        var loginNavBar = <li>
-            <Link to={'/login'}
+        var loginNavBar =
+        <li>
+           <Link to={'/login'}
               onClick={this.handleLogout}
               className="nav-link">
-             Logout</Link>
+             Logout
+           </Link>
         </li>;
         var userWelcome =
         <li>
-          <a>Welcome <b>{this.state.userName} </b> </a>
+          <a> Welcome <b> {this.state.userName} </b> </a>
         </li>;
       } else {
         var loginNavBar =
@@ -92,7 +108,7 @@ export default class App extends React.Component {
               </div>
             </nav>
             <Switch>
-              <Route exact path='/' component={Home}/>
+              <Route exact path='/' component={Home} isLoggedIn={this.state.isLoggedIn} />
               <Route exact path='/login' render={props => <Login {...props} handleLoginStatus={this.handleLoginStatus}/>}/>
               <Route exact path='/signup' render={props => <Signup {...props} handleLoginStatus={this.handleLoginStatus}/>}/>
               <Route exact path='/about' component={About}/>

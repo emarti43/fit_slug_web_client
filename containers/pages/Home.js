@@ -5,6 +5,7 @@ import ExerciseList from '../exercises/ExerciseList';
 import ExerciseRecordList from '../exercise_records/ExerciseRecordList';
 import MealRecordList from '../meal_records/MealRecordList';
 import RequestTemplate from '../utils/RequestTemplate';
+import { Redirect } from 'react-router-dom';
 
 const axios = require('axios');
 
@@ -28,6 +29,9 @@ class Home extends Component {
   }
 
   render() {
+    if (!this.props.isLoggedIn && typeof this.props.isLoggedIn != "undefined") {
+      return <Redirect to={'/login'}/>
+    }
     return (
       <div className='container'>
         <div className="section">
