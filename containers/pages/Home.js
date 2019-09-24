@@ -17,7 +17,7 @@ class Home extends Component {
         exerciseList: [],
         exerciseRecordList: [],
         mealRecordList: [],
-        isLoggedin: false,
+        isLoggedIn: props.isLoggedIn,
         exerciseFormShow: false,
       }
       this.toggleForm = this.toggleForm.bind(this);
@@ -29,7 +29,7 @@ class Home extends Component {
   }
 
   render() {
-    if (!this.props.isLoggedIn && typeof this.props.isLoggedIn != "undefined") {
+    if (this.props.isLoggedIn) {
       return <Redirect to={'/login'}/>
     }
     return (

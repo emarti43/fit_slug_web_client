@@ -75,9 +75,9 @@ class Login extends Component {
             </label>
           </div>
 
-          <div className='row'>
+          <div className="row">
             <input type="submit"
-            className="waves-effect waves-light btn blue white-text"
+            className="btn waves-effect waves-light blue white-text"
             value="Submit"/>
           </div>
 

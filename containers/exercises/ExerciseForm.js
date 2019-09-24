@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import RequestTemplate from '../utils/RequestTemplate';
-import ExerciseFormMuscles from './ExerciseFormMuscles';
 
 export default class ExerciseForm extends React.Component {
   constructor(props) {
@@ -15,12 +14,13 @@ export default class ExerciseForm extends React.Component {
   }
 
   handleFormChange(event) {
-    if (event.target.type == 'checkbox') {
-      this.setState({[event.target.id]: !this.state[event.target.id]});
+    if (event.target.type === 'checkbox') {
+      let selected = this.state[event.target.id];
+
+      this.setState({[event.target.id]: !selected});
     } else {
       this.setState({[event.target.name]: event.target.value});
     }
-    event.preventDefault();
   }
 
   handleSubmit(event) {
@@ -56,7 +56,6 @@ export default class ExerciseForm extends React.Component {
       console.log(error);
       this.setState({unsuccessfulSubmit: true});
     })
-    event.preventDefault();
   }
 
   componentDidMount() {
@@ -75,7 +74,12 @@ export default class ExerciseForm extends React.Component {
 
   render() {
     const muscleCheckboxes = this.state.muscles.map((muscle, i) =>
-    <ExerciseFormMuscles key={i} muscle={muscle} handleFormChange={this.handleFormChange}/>);
+      <div className="col s6" key={i}>
+          <label htmlFor={muscle.id}>
+            <input type="checkbox" id={muscle.id} className="filled-in" onChange={this.handleFormChange}/>
+            <span>{muscle.name}</span>
+          </label>
+      </div>);
     return (
       <div className="card">
         <div className="card-content">
