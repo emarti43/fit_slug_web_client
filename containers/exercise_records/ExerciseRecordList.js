@@ -37,7 +37,7 @@ export default class ExerciseRecordList extends React.Component {
     }
 
     componentDidMount() {
-      RequestTemplate.genericRequest('get', 'exercise_records')
+      RequestTemplate.genericRequest('get', 'recent_exercises')
       .then(response => {
         console.log(response);
         this.setState({exerciseRecordList: response.data});
@@ -57,7 +57,7 @@ export default class ExerciseRecordList extends React.Component {
       }
       return (
         <div>
-          <h5 className="light-blue-text"> Your Exercises </h5>
+          <h4 className="light-blue-text"> Exercises for Today </h4>
           {listElements}
         </div>
       );

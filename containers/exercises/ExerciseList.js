@@ -74,7 +74,7 @@ export default class ExerciseList extends React.Component {
         );
       }
       return (<div>
-      <h5 className = "light-blue-text">Exercises</h5>
+      <h4 className = "light-blue-text">Select an Exercise</h4>
       {listElements}
       <a className="waves-effect waves-teal btn light-blue white-text" name="exerciseFormShow"onClick={this.toggleForm}>
         { this.state.exerciseFormShow ? "Hide Form" : "Create Exercise" }

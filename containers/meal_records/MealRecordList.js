@@ -36,7 +36,7 @@ export default class MealRecordList extends React.Component {
     }
 
     componentDidMount() {
-      RequestTemplate.genericRequest('get', 'meal_records')
+      RequestTemplate.genericRequest('get', 'recent_meals')
       .then( response => {
         this.setState({mealRecordList: response.data});
       }).catch(error => {
@@ -61,8 +61,9 @@ export default class MealRecordList extends React.Component {
       const totalCarbs = this.state.mealRecordList.reduce(totals('total_carb'), 0);
         return(
         <div className="row ">
+          <h4 className="light-blue-text">Meals for Today</h4>
           <div>
-            <h5 className="light-blue-text"> Macro Totals </h5>
+            <h5>Totals </h5>
             <ul>
               <li><b>Calories:</b> {totalCalories}</li>
               <li><b>Protein:</b> {totalProtein} g</li>
@@ -70,7 +71,6 @@ export default class MealRecordList extends React.Component {
               <li><b>Carbs:</b> {totalCarbs} g</li>
             </ul>
           </div>
-          <h5 className="light-blue-text" >Your Meals</h5>
           {listElements}
         </div>);
     }

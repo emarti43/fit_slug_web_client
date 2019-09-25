@@ -26,7 +26,7 @@ export default class MealList extends React.Component {
         }
       );
     }
-    
+
     addElement(meal) {
       var appendedList = this.state.mealList;
       appendedList.push(meal);
@@ -61,7 +61,7 @@ export default class MealList extends React.Component {
         );
       }
         return <div className="row">
-        <h5 className = "light-blue-text">Meal List</h5>
+        <h4 className = "light-blue-text"> Select a Meal </h4>
         {listElements}
         <a className="waves-effect waves-teal btn light-blue white-text" name="exerciseFormShow"onClick={this.toggleForm}>
           { this.state.showMealForm ? "Hide Form" : "Create Meal" }

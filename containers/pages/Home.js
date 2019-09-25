@@ -29,7 +29,7 @@ class Home extends Component {
   }
 
   render() {
-    if (this.props.isLoggedIn) {
+    if (!!this.props.isLoggedIn) {
       return <Redirect to={'/login'}/>
     }
     return (
