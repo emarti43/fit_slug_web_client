@@ -58,12 +58,12 @@ export default class ExerciseRecord extends React.Component {
             </div>
             <div className="card-action">
               <a className="waves-effect btn-flat light-blue-text" onClick={this.toggleForm}>
-                {(this.state.showEditForm)? "Hide Form":"Edit Entry"}
+                {(this.state.showEditForm)? "Hide": <i className="green-text large material-icons">edit</i>}
+              </a>
+              <a className="waves-effect btn-flat red-text" onClick={this.handleDelete}>
+                <i className="large material-icons">delete</i>
               </a>
               {this.state.showForm ? editForm : ""}
-              <a className="waves-effect btn-flat red-text" onClick={this.handleDelete}>
-                Delete Record
-              </a>
             </div>
           </div>
       );

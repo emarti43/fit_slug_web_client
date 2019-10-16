@@ -38,9 +38,13 @@ export default class MealForm extends React.Component {
   }
 
   handleFormChange(event) {
-    var modifiedValues = this.state.values;
-    modifiedValues[event.target.name] = event.target.value;
-    this.setState({values: modifiedValues});
+    let newValues = {
+      ...this.state.values,
+      [event.target.name]: event.target.value
+    }
+    this.setState(
+      { values: { ...newValues }}
+    );
     event.preventDefault();
   }
   componentDidMount () {
@@ -49,12 +53,22 @@ export default class MealForm extends React.Component {
     .then((response) => {
       var fetchedFields = {};
        response.data.forEach(function(element) {
-         fetchedFields[element] = '';
+         fetchedFields[element] = '0';
        });
        this.setState({values: fetchedFields});
+       let preFilledValues = {}
+       if (this.props.mealData) {
+         Object.keys(this.props.mealData).forEach( key => {
+           if (this.state.values[key]) {
+             preFilledValues[key] = this.props.mealData[key]
+           }
+         });
+         this.setState({values: preFilledValues});
+       }
     }).catch((error) =>{
       console.log(error);
     });
+
   }
   render () {
     var listOfFields = <div className="row">{Object.keys(this.state.values).map((key, i) =>
@@ -63,8 +77,8 @@ export default class MealForm extends React.Component {
           <input type="text"
             id={key}
             name={key}
-            value={this.props.mealData ? this.props.mealData[key] : '0'}
             className="filled-in"
+            value={this.state.values[key]}
             onChange={this.handleFormChange}/>
       </div>
     )}</div>;

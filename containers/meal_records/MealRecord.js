@@ -74,11 +74,11 @@ export default class MealRecord extends React.Component {
 
         <div className="card-action">
           <a className="waves-effect btn-flat light-blue-text" onClick={this.toggleForm}>
-            {(this.state.showEditForm)? "Hide Form":"Edit Entry"}
+            {(this.state.showEditForm)? "Hide":<i className="large material-icons">edit</i>}
           </a>
           <a className="waves-effect waves-light btn-flat red-text"
             onClick={this.handleDelete}>
-            Delete Record
+            <i className="large material-icons">delete</i>
           </a>
           {(this.state.showEditForm)? editMealForm: ''}
         </div>

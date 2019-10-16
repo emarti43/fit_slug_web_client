@@ -21,7 +21,6 @@ export default class MealRecordForm extends React.Component {
       }
     }
     if (this.props.submitRequest === 'post') params = { meal_record: { ...params.meal_record, meal_id: this.props.mealData.id }};
-    console.log(params, endpoint);
     RequestTemplate.genericRequest(this.props.submitRequest, endpoint, params)
     .then((response) => {
       if (response.status === 200) {

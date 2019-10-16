@@ -51,14 +51,14 @@ export default class Meal extends React.Component {
         </div>
         <div className="card-action">
           <a className="waves-effect waves-teal btn-flat light-blue-text" onClick={this.toggleForm}>
-            {(this.state.showForm) ? "Hide":"Log"}
+            {(this.state.showForm) ? "Hide":<i className="large material-icons">add</i>}
           </a>
           <a className="waves-effect waves-teal btn-flat light-blue-text" onClick={this.toggleEditForm}>
-            {(this.state.showEditForm) ? "Hide ": "Edit"}
+            {(this.state.showEditForm) ? "Hide ": <i className=" green-text large material-icons">edit</i>}
           </a>
           <a className="waves-effect waves-light btn-flat red-text"
             onClick={this.handleDelete}>
-            Delete
+            <i className="large material-icons">delete</i>
           </a>
           {(this.state.showForm) ? mealRecordForm: ''}
           {(this.state.showEditForm) ? mealEditForm: ''}
