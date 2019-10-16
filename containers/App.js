@@ -20,13 +20,12 @@ export default class App extends React.Component {
 
         this.handleLogout = this.handleLogout.bind(this);
         this.handleLoginStatus = this.handleLoginStatus.bind(this);
-        this.handleLoginStatus();
     }
 
     handleLoginStatus() {
       RequestTemplate.genericRequest('get', 'validate')
       .then((response => {
-        if (response.status == '200') {
+        if (response.status === 200) {
           this.setState(
             {
             userName: response.data.username,
@@ -37,11 +36,7 @@ export default class App extends React.Component {
       }))
       .catch((error => {
         console.log(error);
-        this.setState(
-          {
-            isLoggedIn: false
-          }
-        );
+        this.handleLogout();
       }));
     }
 

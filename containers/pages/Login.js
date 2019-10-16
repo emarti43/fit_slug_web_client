@@ -12,6 +12,7 @@ class Login extends Component {
       username: '',
       password: '',
       unsuccessfulSubmit: false,
+      successfulLogin: false,
     }
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -37,17 +38,20 @@ class Login extends Component {
         console.log('404 response');
       } else {
         localStorage.setItem('fit_slug_session', response.data.token);
-        this.props.history.push('/');
+        this.setState({ successfulLogin: true });
+        this.props.handleLoginStatus();
       }
     })
     .catch((error) => {
       this.setState({unsuccessfulSubmit: true});
       console.log(error);
     });
-    this.props.handleLoginStatus();
   }
 
   render() {
+    if (this.state.successfulLogin) {
+      return <Redirect to="/"/>
+    }
     return (
       <div className='row container'>
         <h4> Login </h4>

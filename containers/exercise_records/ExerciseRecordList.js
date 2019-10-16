@@ -32,14 +32,12 @@ export default class ExerciseRecordList extends React.Component {
           return element;
         }
       });
-      console.log(temp);
       this.setState({exerciseRecordList: temp});
     }
 
     componentDidMount() {
       RequestTemplate.genericRequest('get', 'recent_exercises')
       .then(response => {
-        console.log(response);
         this.setState({exerciseRecordList: response.data});
       })
       .catch(error => {

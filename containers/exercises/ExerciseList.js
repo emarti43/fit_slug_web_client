@@ -51,7 +51,6 @@ export default class ExerciseList extends React.Component {
     componentDidMount() {
       RequestTemplate.genericRequest('get', 'exercises')
       .then( response => {
-        console.log(response);
         this.setState({ exerciseList: response.data });
       })
     }
