@@ -12,7 +12,7 @@ export default class ExerciseRecordList extends React.Component {
         this.updateElement = this.updateElement.bind(this);
     }
 
-    deleteElement(id) {
+    deleteElement(id) { 
       this.setState(
         {
           exerciseRecordList: this.state.exerciseRecordList.filter(record => record.exercise_record.id !== id)

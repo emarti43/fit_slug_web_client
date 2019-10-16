@@ -57,11 +57,11 @@ export default class MealList extends React.Component {
       var listElements = '';
       if (this.state.mealList && this.state.mealList.length > 0) {
         listElements =  this.state.mealList.map((meal, i) =>
-            <Meal mealData={meal} key={i} updateRecord={this.updateElement}/>
+            <Meal mealData={meal} key={i} updateRecord={this.updateElement} deleteElement={this.deleteElement}/>
         );
       } else {
         listElements = <div>
-          <p>No Exercises logged in yet</p>
+          <p>No Meals available</p>
         </div>
       }
         return <div className="row">

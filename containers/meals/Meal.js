@@ -20,7 +20,6 @@ export default class Meal extends React.Component {
       event.preventDefault();
       RequestTemplate.genericRequest('delete', 'meals/' + this.props.mealData.id)
       .then( response => {
-        console.log(response);
         this.props.deleteElement(this.props.mealData.id);
       })
       .catch( error => {
