@@ -14,42 +14,44 @@ export default class ExerciseForm extends React.Component {
   }
 
   handleFormChange(event) {
-    if (event.target.type === 'checkbox') {
-      let selected = this.state[event.target.id];
 
-      this.setState({[event.target.id]: !selected});
-    } else {
+    if (event.target.type === 'checkbox') {
+      let newMuscleState = {
+        [event.target.id]: {
+          ...this.state.muscles[event.target.id], selected: !this.state.muscles[event.target.id].selected
+        }
+      }
+      this.setState( (prevState, props) => { return {
+        ...prevState, muscles: {
+          ...prevState.muscles, ...newMuscleState
+        }
+      }
+    });
+  } else { // only for Name change
       this.setState({[event.target.name]: event.target.value});
     }
   }
 
   handleSubmit(event) {
-    var selectedMuscles = [];
-    for(var i = 1; i <= this.state.muscles.length; i++) {
-      if(this.state[i]){
-        selectedMuscles.push(i);
-      };
-    }
+    event.preventDefault();
+    var selectedMuscles = Object.keys(this.state.muscles).filter( id => this.state.muscles[id].selected);
     var params = {
       exercise: {
         name: this.state.exerciseName,
         muscles: selectedMuscles,
       }
     }
-    if (this.props.submitRequest == 'put') {
+    if (this.props.submitRequest === 'put') {
       var endpoint = 'exercises/' + this.props.exerciseData.id;
     } else {
       var endpoint = 'exercises';
     }
     RequestTemplate.genericRequest(this.props.submitRequest, endpoint, params)
     .then((response) =>{
-      console.log(response);
       if (response.status === 200) {
-        params.exercise.muscles = params.exercise.muscles.map(id => this.state.muscles.find(muscle => muscle.id === id));
-        params.exercise.id = this.props.exerciseData.id;
-        this.props.updateRecord(params);
-      } 
-      if (response.data === 201) {
+        this.props.updateRecord(response.data);
+      }
+      if (response.status === 201) {
         this.props.addElement(response.data);
       }
       this.props.toggleExerciseForm(event);
@@ -62,23 +64,23 @@ export default class ExerciseForm extends React.Component {
   componentDidMount() {
     RequestTemplate.genericRequest('get','muscles')
     .then((response) => {
-      this.setState({
-        muscles: response.data.map((muscle) => muscle)
-      });
-      for(var i = 1; i <= this.state.muscles.length; i++) {
-        this.setState({[i]: false});
-      }
+      let muscleStates = {}
+      for(var i = 0; i < response.data.length; i++) {
+        let index = response.data[i].id;
+        muscleStates[index] = {...response.data[i], selected: false}
+      };
+      this.setState({ muscles: muscleStates });
     }).catch(function (error) {
       console.log(error);
     });
   }
 
   render() {
-    const muscleCheckboxes = this.state.muscles.map((muscle, i) =>
-      <div className="col s6" key={i}>
-          <label htmlFor={muscle.id}>
-            <input type="checkbox" id={muscle.id} className="filled-in" onChange={this.handleFormChange}/>
-            <span>{muscle.name}</span>
+    const muscleCheckboxes = Object.keys(this.state.muscles).map(id =>
+      <div className="col s6" key={id}>
+          <label htmlFor={id}>
+            <input type="checkbox" id={id} className="filled-in" onChange={this.handleFormChange}/>
+            <span>{this.state.muscles[id].name}</span>
           </label>
       </div>);
     return (

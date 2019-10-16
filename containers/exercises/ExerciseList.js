@@ -25,16 +25,12 @@ export default class ExerciseList extends React.Component {
     }
 
     updateElement(data) {
-      this.setState({exerciseList: this.state.exerciseList.map(element => {
-        if (data.exercise.id === element.exercise.id) {
-          return ({
-            exercise: data.exercise,
-            muscles: data.exercise.muscles,
-          });
-        } else {
-          return element;
-        }
-      })});
+      this.setState({
+        exerciseList: this.state.exerciseList.map(element => {
+          if (data.exercise.id === element.exercise.id) return data;
+          else return element;
+        })
+      });
     }
 
     addElement(exercise) {
