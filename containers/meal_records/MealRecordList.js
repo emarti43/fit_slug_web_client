@@ -69,11 +69,10 @@ export default class MealRecordList extends React.Component {
         <div className="row ">
           <h4 className="light-blue-text">Meals for Today</h4>
           <div className="row">
-            <h5>Totals </h5>
-              <div className="totals col s3"><b>Calories</b> {totalCalories}</div>
-              <div className="totals  brown-text protein col s3"><b>Protein</b> {totalProtein} g</div>
-              <div className="totals yellow-text text-darken-2 col s3"><b>Fat</b> {totalFat} g</div>
-              <div className="totals green-text col s3"><b>Carbs:</b> {totalCarbs} g</div>
+            <div className="totals col s3"><h5>{totalCalories} <b>Calories</b></h5></div>
+            <div className="totals  brown-text protein col s3"><h5> {totalProtein} g <b>Protein</b></h5> </div>
+            <div className="totals yellow-text text-darken-2 col s3"><h5> {totalFat} g <b>Fat</b></h5></div>
+            <div className="totals green-text col s3"><h5> {totalCarbs} g<b>Carbs</b></h5></div>
           </div>
           {listElements}
         </div>);
