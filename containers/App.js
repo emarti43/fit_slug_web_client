@@ -83,7 +83,7 @@ export default class App extends React.Component {
             <nav className='navbar navbar-dark light-blue'>
               <div className='nav-wrapper container'>
                 <a className='brand-logo left'>
-                Fit Slug
+                  <img className='responsive-img white-text' style={{height: '64px', filter: 'invert(100%)'}}src='/slug-icon.svg'/>
                 </a>
                 <ul id='nav-mobile'className="right">
                   {userWelcome}
