@@ -59,8 +59,13 @@ export default class MealForm extends React.Component {
   render () {
     var listOfFields = <div className="row">{Object.keys(this.state.values).map((key, i) =>
       <div key={i} className="input-field col s6">
-        <label htmlFor={key}>{key.split("_").join(" ")}</label>
-          <input type="text" id={key} name={key} className="filled-in" onChange={this.handleFormChange}/>
+        <label className="active" htmlFor={key}>{key.split("_").join(" ")}</label>
+          <input type="text"
+            id={key}
+            name={key}
+            value={this.props.mealData ? this.props.mealData[key] : '0'}
+            className="filled-in"
+            onChange={this.handleFormChange}/>
       </div>
     )}</div>;
 

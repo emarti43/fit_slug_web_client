@@ -6,7 +6,7 @@ export default class ExerciseForm extends React.Component {
     super(props);
     this.state = {
       muscles: [],
-      exerciseName: '',
+      exerciseName: props.exerciseData.name ? props.exerciseData.name : '',
       unsuccessfulSubmit: false,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -92,8 +92,8 @@ export default class ExerciseForm extends React.Component {
           <form onSubmit={this.handleSubmit}>
             {this.state.unsuccessfulSubmit ? <a className="red-text"> Unsuccessful Submit. Please try again</a>: ''}
             <div className="input-field col s12">
-              <label htmlFor="exerciseName">Name of Exercise</label>
-              <input type="text" name="exerciseName" value={this.state.name} onChange={this.handleFormChange}></input>
+              <label className="active" htmlFor="exerciseName">Name of Exercise</label>
+              <input type="text" name="exerciseName" value={this.state.exerciseName} onChange={this.handleFormChange}></input>
             </div>
             <span>Muscles Used:</span>
             <div className="row">{muscleCheckboxes}</div>
