@@ -17,7 +17,6 @@ class Home extends Component {
         exerciseList: [],
         exerciseRecordList: [],
         mealRecordList: [],
-        isLoggedIn: props.isLoggedIn,
         exerciseFormShow: false,
       }
       this.toggleForm = this.toggleForm.bind(this);
@@ -29,19 +28,20 @@ class Home extends Component {
   }
 
   render() {
-    if (!!this.props.isLoggedIn) {
-      return <Redirect to={'/login'}/>
-    }
-    return (
-      <div className='container'>
-        <div className="section">
-          <MealRecordList />
-          <ExerciseRecordList/>
-          <MealList/>
-          <ExerciseList />
+    if (this.props.isLoggedIn === false) {      
+      return(<Redirect to={'/login'}/>);
+    } else {
+      return (
+        <div className='container'>
+          <div className="section">
+            <MealRecordList />
+            <ExerciseRecordList/>
+            <MealList/>
+            <ExerciseList />
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 export default Home;

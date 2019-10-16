@@ -49,7 +49,7 @@ class Signup extends Component {
   }
 
   render() {
-    if (this.state.successfulLogin) return <Redirect to="/"/>
+    if (this.props.isLoggedIn) return <Redirect to="/"/>
     return (
       <div className="container row">
         <h5>{this.state.isLoggedIn}</h5>

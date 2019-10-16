@@ -38,8 +38,8 @@ class Login extends Component {
         console.log('404 response');
       } else {
         localStorage.setItem('fit_slug_session', response.data.token);
-        this.setState({ successfulLogin: true });
         this.props.handleLoginStatus();
+        this.setState({ successfulLogin: true });
       }
     })
     .catch((error) => {
@@ -49,7 +49,7 @@ class Login extends Component {
   }
 
   render() {
-    if (this.state.successfulLogin) {
+    if (this.state.successfulLogin || this.props.isLoggedIn) {
       return <Redirect to="/"/>
     }
     return (

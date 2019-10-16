@@ -103,9 +103,14 @@ export default class App extends React.Component {
               </div>
             </nav>
             <Switch>
-              <Route exact path='/' component={Home} isLoggedIn={this.state.isLoggedIn} />
-              <Route exact path='/login' render={props => <Login {...props} handleLoginStatus={this.handleLoginStatus}/>}/>
-              <Route exact path='/signup' render={props => <Signup {...props} handleLoginStatus={this.handleLoginStatus}/>}/>
+              <Route exact path='/'
+                render={props => <Home {...props} isLoggedIn={this.state.isLoggedIn}/>}/>
+              <Route exact path='/login' render={props => <Login {...props}
+                handleLoginStatus={this.handleLoginStatus}
+                isLoggedIn={this.state.isLoggedIn}/>}/>
+              <Route exact path='/signup' render={props => <Signup {...props}
+                handleLoginStatus={this.handleLoginStatus}
+                isLoggedIn={this.state.isLoggedIn}/>}/>
               <Route exact path='/about' component={About}/>
             </Switch>
             <footer className="page-footer light-blue">
