@@ -81,8 +81,9 @@ export default class App extends React.Component {
         <Router>
           <div>
             <nav className='navbar navbar-dark light-blue'>
-              <div className='nav-wrapper container'>
-                <a className='brand-logo left'>
+              <div className='nav-wrapper'>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a className='brand-logo'>
                   <img className='responsive-img white-text' style={{height: '64px', filter: 'invert(100%)'}}src='/slug-icon.svg'/>
                 </a>
                 <ul id='nav-mobile'className="right">
