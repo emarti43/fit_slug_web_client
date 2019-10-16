@@ -13,6 +13,7 @@ class Signup extends Component {
       password: '',
       password_confirmation: '',
       email: '',
+      successfulLogin: false,
     }
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -38,7 +39,6 @@ class Signup extends Component {
       if (response.status != 200) {
       } else {
         localStorage.setItem('fit_slug_session', response.data.token);
-        this.props.history.push('/');
       }
     })
     .catch((error) => {
@@ -48,6 +48,7 @@ class Signup extends Component {
   }
 
   render() {
+    if (this.state.successfulLogin) return <Redirect to="/"/>
     return (
       <div className="container row">
         <h5>{this.state.isLoggedIn}</h5>

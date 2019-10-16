@@ -26,6 +26,7 @@ export default class App extends React.Component {
       RequestTemplate.genericRequest('get', 'validate')
       .then((response => {
         if (response.status === 200) {
+          console.log(response);
           this.setState(
             {
             userName: response.data.username,
