@@ -36,15 +36,16 @@ class Signup extends Component {
     };
     RequestTemplate.genericRequest('post', 'signup', payload)
     .then((response) => {
-      if (response.status != 200) {
-      } else {
+      if (response.status === 201) {
         localStorage.setItem('fit_slug_session', response.data.token);
+        this.props.handleLoginStatus();
+        this.setState({ successfulLogin: true });
       }
     })
     .catch((error) => {
       console.log(error);
     });
-    this.props.handleLoginStatus();
+
   }
 
   render() {
