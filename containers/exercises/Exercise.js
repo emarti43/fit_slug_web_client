@@ -32,7 +32,6 @@ export default class Exercise extends React.Component {
       event.preventDefault();
       RequestTemplate.genericRequest('delete', 'exercises/' + this.props.exerciseData.id)
       .then( (response) => {
-        console.log(response);
         this.props.deleteElement(this.props.exerciseData.id);
       })
       .catch( (error) => {
