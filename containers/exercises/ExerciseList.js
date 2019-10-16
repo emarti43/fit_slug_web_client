@@ -61,7 +61,7 @@ export default class ExerciseList extends React.Component {
 
     render () {
       var listElements = ''
-      if (this.state.exerciseList) {
+      if (this.state.exerciseList && this.state.exerciseList.length > 0) {
         listElements = this.state.exerciseList.map((exercise, i) =>
             <Exercise
               exerciseData={exercise.exercise}
@@ -71,6 +71,10 @@ export default class ExerciseList extends React.Component {
               deleteElement={this.deleteElement}
               updateRecord={this.updateElement}/>
         );
+      } else {
+        listElements = <div>
+          <p>No Exercises Found</p>
+        </div>
       }
       return (<div>
       <h4 className = "light-blue-text">Select an Exercise</h4>

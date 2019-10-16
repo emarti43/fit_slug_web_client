@@ -22,11 +22,12 @@ export default class MealForm extends React.Component {
     }
     RequestTemplate.genericRequest(this.props.submitRequest, endpoint, params)
     .then((response) => {
-      if (response.status == 200) {
+      if (response.status === 200) {
         params.meal.id = this.props.mealData.id;
         this.props.updateRecord(params.meal);
-      } else {
-        this.props.addElement(params.meal);
+      }
+      if (response.status === 201) {
+        this.props.addElement(response.data.meal);
       }
       this.props.toggleMealForm(event);
     }).catch((error) => {

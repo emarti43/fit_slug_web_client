@@ -48,10 +48,14 @@ export default class ExerciseRecordList extends React.Component {
 
     render () {
       var listElements = '';
-      if (this.state.exerciseRecordList) {
+      if (this.state.exerciseRecordList || this.state.exerciseRecordList.length > 0) {
         listElements =  this.state.exerciseRecordList.map((exercise, i) =>
             <ExerciseRecord exerciseData = {exercise} key = {exercise.exercise_record.id} deleteElement={this.deleteElement} updateRecord={this.updateElement}/>
         );
+      } else {
+        listElements = <div>
+          <p>No Exercises logged in yet</p>
+        </div>
       }
       return (
         <div>

@@ -13,6 +13,7 @@ export default class MealRecordList extends React.Component {
     }
 
     deleteElement(id){
+      console.log('record is deleted');
       this.setState(
         {
           mealRecordList: this.state.mealRecordList.filter(record => record.id !== id)
@@ -46,10 +47,15 @@ export default class MealRecordList extends React.Component {
 
     render () {
       var listElements = '';
-      if (this.state.mealRecordList) {
+      if (this.state.mealRecordList || this.state.mealRecordList.length > 0) {
          listElements = this.state.mealRecordList.map((meal, i) =>
             <MealRecord mealData={meal} key={i} deleteElement={this.deleteElement} updateRecord={this.updateElement}/>
         );
+      } else {
+        listElements =
+        <div>
+          <p>No Meals logged in yet</p>
+        </div>
       }
 
       function totals (fieldName) {
@@ -62,14 +68,12 @@ export default class MealRecordList extends React.Component {
         return(
         <div className="row ">
           <h4 className="light-blue-text">Meals for Today</h4>
-          <div>
+          <div className="row">
             <h5>Totals </h5>
-            <ul>
-              <li><b>Calories:</b> {totalCalories}</li>
-              <li><b>Protein:</b> {totalProtein} g</li>
-              <li><b>Fat:</b> {totalFat} g</li>
-              <li><b>Carbs:</b> {totalCarbs} g</li>
-            </ul>
+              <div className="totals col s3"><b>Calories</b> {totalCalories}</div>
+              <div className="totals  brown-text protein col s3"><b>Protein</b> {totalProtein} g</div>
+              <div className="totals yellow-text text-darken-2 col s3"><b>Fat</b> {totalFat} g</div>
+              <div className="totals green-text col s3"><b>Carbs:</b> {totalCarbs} g</div>
           </div>
           {listElements}
         </div>);

@@ -55,10 +55,14 @@ export default class MealList extends React.Component {
 
     render () {
       var listElements = '';
-      if (this.state.mealList) {
+      if (this.state.mealList && this.state.mealList.length > 0) {
         listElements =  this.state.mealList.map((meal, i) =>
             <Meal mealData={meal} key={i} updateRecord={this.updateElement}/>
         );
+      } else {
+        listElements = <div>
+          <p>No Exercises logged in yet</p>
+        </div>
       }
         return <div className="row">
         <h4 className = "light-blue-text"> Select a Meal </h4>

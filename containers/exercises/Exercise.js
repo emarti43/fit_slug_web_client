@@ -73,17 +73,17 @@ export default class Exercise extends React.Component {
           <div className="card-action">
             <a className="waves-effect waves-light btn-flat light-blue-text"
               onClick={this.toggleForm}>
-              {(this.state.showForm)? "Hide Form":"Log Exercise"}
+              {(this.state.showForm)? "Hide":"Log"}
             </a>
 
             <a className="waves-effect waves-light btn-flat light-blue-text"
               onClick={this.toggleEditForm}>
-              {(this.state.showEditForm)? "Hide Form":"Edit Exercise Info"}
+              {(this.state.showEditForm)? "Hide":"Edit"}
             </a>
 
             <a className="waves-effect waves-light btn-flat red-text"
               onClick={this.handleDelete}>
-              Delete Exercise
+              Delete
             </a>
             {exerciseRecordForm}
             {editExerciseForm}

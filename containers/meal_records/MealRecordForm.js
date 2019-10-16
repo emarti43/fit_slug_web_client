@@ -14,25 +14,16 @@ export default class MealRecordForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    if (this.props.submitRequest == 'put') {
-      var endpoint = 'meal_records/' + this.props.mealData.id;
-      var params = {
-        meal_record: {
-          num_servings: this.state.numServings,
-        }
-      };
-    } else {
-      var endpoint = 'meal_records/';
-      var params = {
-        meal_record: {
-          num_servings: this.state.numServings,
-          meal_id: this.props.mealData.id,
-        }
-      };
+    let endpoint = `meal_records/${this.props.submitRequest === 'put' ? this.props.mealData.id : ''}`;
+    let params =  {
+      meal_record: {
+        num_servings: this.state.numServings
+      }
     }
+    if (this.props.submitRequest === 'post') params = { meal_record: { ...params.meal_record, meal_id: this.props.mealData.id }};
+    console.log(params, endpoint);
     RequestTemplate.genericRequest(this.props.submitRequest, endpoint, params)
     .then((response) => {
-      console.log(response);
       if (response.status === 200) {
         params.id = this.props.mealData.id;
         this.props.updateRecord(params);

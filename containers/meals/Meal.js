@@ -32,18 +32,12 @@ export default class Meal extends React.Component {
       event.preventDefault();
       this.setState({showForm: !this.state.showForm});
     }
+
     toggleEditForm(event) {
       event.preventDefault();
       this.setState({showEditForm: !this.state.showEditForm});
     }
 
-    componentDidMount() {
-
-    }
-
-    componentWillUnmount() {
-
-    }
     render () {
       var mealRecordForm = <MealRecordForm mealData={this.props.mealData} submitRequest='post' toggleMealRecordForm={this.toggleForm}/>
       var mealEditForm = <MealForm mealData={this.props.mealData} submitRequest='put' toggleMealForm={this.toggleEditForm} updateRecord={this.props.updateRecord}/>
@@ -58,14 +52,14 @@ export default class Meal extends React.Component {
         </div>
         <div className="card-action">
           <a className="waves-effect waves-teal btn-flat light-blue-text" onClick={this.toggleForm}>
-            {(this.state.showForm) ? "Hide Form":"Log Meal"}
+            {(this.state.showForm) ? "Hide":"Log"}
           </a>
           <a className="waves-effect waves-teal btn-flat light-blue-text" onClick={this.toggleEditForm}>
-            {(this.state.showEditForm) ? "Hide Form": "Edit Nutritional Info"}
+            {(this.state.showEditForm) ? "Hide ": "Edit"}
           </a>
           <a className="waves-effect waves-light btn-flat red-text"
             onClick={this.handleDelete}>
-            Delete Meal
+            Delete
           </a>
           {(this.state.showForm) ? mealRecordForm: ''}
           {(this.state.showEditForm) ? mealEditForm: ''}

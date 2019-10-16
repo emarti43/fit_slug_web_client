@@ -48,7 +48,8 @@ export default class ExerciseForm extends React.Component {
         params.exercise.muscles = params.exercise.muscles.map(id => this.state.muscles.find(muscle => muscle.id === id));
         params.exercise.id = this.props.exerciseData.id;
         this.props.updateRecord(params);
-      } else {
+      } 
+      if (response.data === 201) {
         this.props.addElement(response.data);
       }
       this.props.toggleExerciseForm(event);
