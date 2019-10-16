@@ -34,7 +34,7 @@ export default class ExerciseRecord extends React.Component {
     render () {
       var musclesUsed =
       <div className="col s6">
-            <b> Muscles Used</b>
+           <b className="card-title"> Muscles Used</b>
           <ul>
           {this.props.exerciseData.muscles.map((muscle, i) => <li key={i}> {muscle.name} </li>)}
           </ul>
@@ -46,7 +46,7 @@ export default class ExerciseRecord extends React.Component {
             <div className="card-content">
               <div className="row">
                 <div className="col s6">
-                  <h4 className="card-title">{this.props.exerciseData.exercise.name}</h4>
+                  <span className="card-title">{this.props.exerciseData.exercise.name}</span>
                   <ul>
                     <li> <b> Number of Sets: </b> {this.props.exerciseData.exercise_record.num_sets}</li>
                     <li> <b> Number of Reps: </b> {this.props.exerciseData.exercise_record.num_reps}</li>
