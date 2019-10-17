@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import ExerciseRecord from './ExerciseRecord';
 import RequestTemplate from '../utils/RequestTemplate';
+import ListLoader from '../utils/ListLoader';
 
 export default class ExerciseRecordList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          exerciseRecordList: [],
+          exerciseRecordList: undefined,
         }
         this.deleteElement = this.deleteElement.bind(this);
         this.updateElement = this.updateElement.bind(this);
     }
 
-    deleteElement(id) { 
+    deleteElement(id) {
       this.setState(
         {
           exerciseRecordList: this.state.exerciseRecordList.filter(record => record.exercise_record.id !== id)
@@ -47,20 +48,28 @@ export default class ExerciseRecordList extends React.Component {
 
 
     render () {
-      var listElements = '';
-      if (this.state.exerciseRecordList || this.state.exerciseRecordList.length > 0) {
-        listElements =  this.state.exerciseRecordList.map((exercise, i) =>
-            <ExerciseRecord exerciseData = {exercise} key = {exercise.exercise_record.id} deleteElement={this.deleteElement} updateRecord={this.updateElement}/>
-        );
-      } else {
-        listElements = <div>
-          <p>No Exercises logged in yet</p>
-        </div>
+      const renderRecord = list => {
+        if (list === undefined) {
+          return <ListLoader/>
+        } else {
+          if (list.length > 0)
+            return(
+              list.map((exercise, i) =>
+                  <ExerciseRecord exerciseData = {exercise} key = {exercise.exercise_record.id} deleteElement={this.deleteElement} updateRecord={this.updateElement}/>
+              )
+            );
+          else
+            return(
+              <div>
+                <p>No Exercises logged in yet</p>
+              </div>
+            );
+        }
       }
       return (
         <div>
           <h4 className="light-blue-text"> Exercises for Today </h4>
-          {listElements}
+          {renderRecord(this.state.exerciseRecordList)}
         </div>
       );
     }

@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import Exercise from './Exercise';
 import ExerciseForm from './ExerciseForm';
 import RequestTemplate from '../utils/RequestTemplate';
+import ListLoader from '../utils/ListLoader';
 
 export default class ExerciseList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
           exerciseFormShow: false,
-          exerciseList: [],
+          exerciseList: undefined,
         };
         this.toggleForm = this.toggleForm.bind(this);
         this.deleteElement = this.deleteElement.bind(this);
@@ -56,28 +57,37 @@ export default class ExerciseList extends React.Component {
     }
 
     render () {
-      var listElements = ''
-      if (this.state.exerciseList && this.state.exerciseList.length > 0) {
-        listElements = this.state.exerciseList.map((exercise, i) =>
-            <Exercise
-              exerciseData={exercise.exercise}
-              muscles={exercise.muscles}
-              key={i}
-              submitRequest='post'
-              deleteElement={this.deleteElement}
-              updateRecord={this.updateElement}/>
-        );
-      } else {
-        listElements = <div>
-          <p>No Exercises Found</p>
-        </div>
+      const renderRecord = list => {
+        if (list === undefined) {
+          return <ListLoader/>
+        } else {
+          if (list.length > 0)
+            return(list.map((exercise, i) =>
+              <Exercise
+                exerciseData={exercise.exercise}
+                muscles={exercise.muscles}
+                key={i}
+                submitRequest='post'
+                deleteElement={this.deleteElement}
+                updateRecord={this.updateElement}/>
+              )
+            );
+          else
+            return(
+              <div>
+                <p>No Exercises available</p>
+              </div>
+            );
+        }
       }
       return (<div>
       <h4 className = "light-blue-text">Select an Exercise</h4>
-      {listElements}
-      <a className="waves-effect waves-teal btn light-blue white-text" name="exerciseFormShow"onClick={this.toggleForm}>
-        { this.state.exerciseFormShow ? "Hide Form" : "Create Exercise" }
-      </a>
+      {renderRecord(this.state.exerciseList)}
+      <div>
+        <a className="waves-effect waves-teal btn light-blue white-text" name="exerciseFormShow"onClick={this.toggleForm}>
+          { this.state.exerciseFormShow ? "Hide Form" : "Create Exercise" }
+        </a>
+      </div>
       { this.state.exerciseFormShow ?<ExerciseForm toggleExerciseForm={this.toggleForm} submitRequest= 'post' addElement={this.addElement}/> : "" }
       </div>);
     }
