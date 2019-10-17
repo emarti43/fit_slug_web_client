@@ -47,15 +47,14 @@ export default class MealRecordList extends React.Component {
 
     render () {
       var listElements = '';
-      if (this.state.mealRecordList || this.state.mealRecordList.length > 0) {
+      if (this.state.mealRecordList.length > 0) {
          listElements = this.state.mealRecordList.map((meal, i) =>
             <MealRecord mealData={meal} key={i} deleteElement={this.deleteElement} updateRecord={this.updateElement}/>
         );
       } else {
-        listElements =
-        <div>
+        listElements = <div>
           <p>No Meals logged in yet</p>
-        </div>
+        </div>;
       }
 
       function totals (fieldName) {
