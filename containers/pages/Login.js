@@ -84,7 +84,9 @@ class Login extends Component {
             className="btn waves-effect waves-light blue white-text"
             value="Submit"/>
           </div>
-
+          <div>
+            Don't have an account? <a href="/signup">Sign Up!</a>
+          </div>
         </form>
        </div>
     );

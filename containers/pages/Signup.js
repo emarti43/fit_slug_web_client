@@ -52,7 +52,7 @@ class Signup extends Component {
     if (this.props.isLoggedIn) return <Redirect to="/"/>
     return (
       <div className="container row">
-        <h5>{this.state.isLoggedIn}</h5>
+        <h5> Sign Up</h5>
         <form onSubmit={this.handleFormSubmit}>
         <div className= 'input-field col s6'>
           <input type="text"
