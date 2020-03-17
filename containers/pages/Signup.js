@@ -14,6 +14,7 @@ class Signup extends Component {
       password_confirmation: '',
       email: '',
       successfulLogin: false,
+      pendingRequest: false
     }
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -26,6 +27,7 @@ class Signup extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
+    this.setState({pendingRequest: true});
     var payload = {
       user: {
         name: this.state.username,
@@ -36,6 +38,7 @@ class Signup extends Component {
     };
     RequestTemplate.genericRequest('post', 'signup', payload)
     .then((response) => {
+      this.setState({pendingRequest: false});
       if (response.status === 201) {
         localStorage.setItem('fit_slug_session', response.data.token);
         this.props.handleLoginStatus();
@@ -53,6 +56,10 @@ class Signup extends Component {
     return (
       <div className="container row">
         <h5> Sign Up</h5>
+        {this.state.pendingRequest ? 
+        <div class="progress active light-blue lighten-3">
+            <div class="indeterminate light-blue"></div>
+        </div> : ''}
         <form onSubmit={this.handleFormSubmit}>
         <div className= 'input-field col s6'>
           <input type="text"

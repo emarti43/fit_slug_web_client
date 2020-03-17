@@ -13,6 +13,7 @@ class Login extends Component {
       password: '',
       unsuccessfulSubmit: false,
       successfulLogin: false,
+      pendingRequest: false
     }
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -32,8 +33,10 @@ class Login extends Component {
         password: this.state.password,
         }
     };
+    this.setState({ pendingRequest: true});
     RequestTemplate.genericRequest('post', 'login', payload)
     .then((response) => {
+      this.setState({ pendingRequest: false});
       if (response.status != 200) {
         console.log('404 response');
       } else {
@@ -55,6 +58,10 @@ class Login extends Component {
     return (
       <div className='row container'>
         <h4> Login </h4>
+        {this.state.pendingRequest ? 
+        <div class="progress active light-blue lighten-3">
+            <div class="indeterminate light-blue"></div>
+        </div> : ''}
         <form className='col s6' onSubmit={this.handleFormSubmit}>
           {this.state.unsuccessfulSubmit ? <a className="red-text"> Unsuccessful Login. Please try again</a>: ''}
           <div className='input-field col s6'>
